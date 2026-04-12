@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Женский Бизнес-Старт | Байдавлетова Ляйсан</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --rose:#FF6B9D;--blush:#FFB3CC;--orchid:#C77DFF;--gold:#FFD700;
+  --champagne:#F5E6C8;--dv:#1a0a2e;--mv:#3d1a6e;--glow:rgba(255,107,157,.15);
+  --text:#f0e8ff;--muted:rgba(240,232,255,.65);
+  --glass:rgba(255,255,255,.06);--glass-b:rgba(255,255,255,.12);
+  --fh:'Cormorant Garamond',serif;--fb:'Inter',sans-serif;
+  color-scheme:dark
+}
+html{scroll-behavior:smooth}
+body{background:var(--dv);color:var(--text);font-family:var(--fb);line-height:1.7;overflow-x:hidden;position:relative}
+
+/* PROGRESS BAR */
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--rose),var(--orchid),var(--gold));z-index:999;transition:width .1s}
+
+/* ORBS */
+.orb-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;animation:drift linear infinite}
+.ob1{width:500px;height:500px;background:radial-gradient(circle,#FF6B9D,transparent 70%);top:-100px;left:-100px;animation-duration:22s}
+.ob2{width:400px;height:400px;background:radial-gradient(circle,#C77DFF,transparent 70%);top:30%;right:-80px;animation-duration:18s;animation-delay:-6s}
+.ob3{width:350px;height:350px;background:radial-gradient(circle,#FFD700,transparent 70%);bottom:10%;left:20%;animation-duration:25s;animation-delay:-10s}
+.ob4{width:300px;height:300px;background:radial-gradient(circle,#FF6B9D,transparent 70%);bottom:-50px;right:30%;animation-duration:20s;animation-delay:-4s}
+.ob5{width:250px;height:250px;background:radial-gradient(circle,#C77DFF,transparent 70%);top:60%;left:-60px;animation-duration:16s;animation-delay:-8s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-30px) scale(1.08)}50%{transform:translate(-20px,50px) scale(.95)}75%{transform:translate(30px,20px) scale(1.05)}100%{transform:translate(0,0) scale(1)}}
+
+/* NAVBAR */
+.nav{position:fixed;top:3px;left:0;right:0;z-index:100;padding:16px 0;transition:background .4s}
+.nav.s{background:rgba(26,10,46,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,107,157,.15)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--fh);font-size:20px;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.5px}
+.nav-logo span{color:var(--rose)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:100px;font-family:var(--fb);font-size:13px;font-weight:600;text-decoration:none;background:var(--glass);border:1px solid var(--glass-b);color:var(--text);transition:all .3s;backdrop-filter:blur(8px)}
+.back-btn:hover{background:rgba(255,107,157,.2);border-color:var(--rose);color:#fff}
+
+/* CONTAINER */
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* SECTION TAG */
+.stag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,157,.12);border:1px solid rgba(255,107,157,.3);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--rose);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+
+/* HEADINGS */
+h2.sh{font-family:var(--fh);font-size:clamp(32px,5vw,58px);font-weight:700;letter-spacing:-.5px;margin-bottom:16px;color:#fff;text-shadow:0 0 40px rgba(255,107,157,.4)}
+h2.sh span{color:var(--gold)}
+.ssub{font-size:17px;color:var(--muted);max-width:620px;line-height:1.8}
+
+/* ANIM */
+.anim{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
+.anim.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* BUTTONS */
+.btn-cta{display:inline-flex;align-items:center;gap:10px;padding:18px 44px;border-radius:100px;font-family:var(--fb);font-size:16px;font-weight:700;text-decoration:none;cursor:pointer;border:none;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--rose),var(--orchid));color:#fff;box-shadow:0 8px 32px rgba(199,125,255,.4);transition:transform .3s,box-shadow .3s}
+.btn-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2.5s infinite}
+@keyframes shimmer{0%{left:-100%}100%{left:150%}}
+.btn-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(199,125,255,.6)}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;animation:sparkle .6s ease-out forwards}
+@keyframes sparkle{0%{transform:scale(1);opacity:1}100%{transform:scale(0) translate(var(--tx),var(--ty));opacity:0}}
+
+/* WAVE DIVIDER */
+.wave{width:100%;line-height:0;position:relative;z-index:1}
+.wave svg{display:block;width:100%}
+
+/* SECTIONS */
+section{padding:96px 0;position:relative;z-index:1}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0}
+#petals-canvas{position:absolute;inset:0;pointer-events:none;z-index:1}
+.hero-content{position:relative;z-index:2;padding:140px 0 100px;text-align:center;max-width:900px;margin:0 auto}
+.hero-flower{font-size:52px;margin-bottom:20px;display:block;animation:bloom 3s ease-in-out infinite}
+@keyframes bloom{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.1) rotate(3deg)}}
+.hero-title{font-family:var(--fh);font-size:clamp(42px,7vw,90px);font-weight:700;line-height:1;letter-spacing:-.5px;color:#fff;text-shadow:0 0 60px rgba(255,107,157,.5);margin-bottom:12px}
+.hero-sub-title{font-family:var(--fh);font-size:clamp(20px,3vw,32px);font-weight:400;font-style:italic;color:var(--blush);margin-bottom:28px}
+.hero-desc{font-size:clamp(15px,1.8vw,19px);color:var(--muted);max-width:620px;margin:0 auto 44px;line-height:1.8}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(12px);padding:10px 20px;border-radius:100px;font-size:14px;font-weight:600;color:var(--champagne)}
+/* ===== ABOUT (glassmorphism) ===== */
+.about{background:linear-gradient(180deg,var(--dv) 0%,#200d3d 100%)}
+.glass-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.glass-card{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(20px);border-radius:24px;padding:36px 28px;transition:transform .35s,box-shadow .35s,border-color .35s;position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--orchid))}
+.glass-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 24px 56px rgba(255,107,157,.2);border-color:rgba(255,107,157,.3)}
+.gc-ico{font-size:42px;margin-bottom:18px;display:block}
+.gc-title{font-family:var(--fh);font-size:22px;font-weight:700;color:#fff;margin-bottom:12px}
+.gc-text{font-size:14px;color:var(--muted);line-height:1.8}
+
+/* ===== FOR WHOM ===== */
+.for-whom{background:linear-gradient(180deg,#200d3d 0%,#1a0a2e 100%)}
+.fw-list{list-style:none;max-width:760px;margin:48px auto 0;display:flex;flex-direction:column;gap:14px}
+.fw-item{display:flex;align-items:flex-start;gap:16px;padding:18px 24px;border-radius:16px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);transition:border-color .3s,background .3s;cursor:default;position:relative;overflow:hidden}
+.fw-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--rose),var(--orchid));transform:scaleY(0);transition:transform .3s;transform-origin:bottom}
+.fw-item:hover{border-color:rgba(255,107,157,.3);background:rgba(255,107,157,.06)}
+.fw-item:hover::before{transform:scaleY(1)}
+.fw-ico{font-size:24px;flex-shrink:0;margin-top:1px}
+.fw-text{font-size:15px;color:var(--text);line-height:1.6}
+
+/* ===== TIMELINE ===== */
+.timeline-sec{background:linear-gradient(180deg,#1a0a2e 0%,#251040 100%)}
+.timeline{max-width:800px;margin:56px auto 0;position:relative}
+.timeline::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--rose),var(--orchid),var(--gold));opacity:.4}
+.tl-item{display:flex;gap:24px;margin-bottom:28px;align-items:flex-start;position:relative}
+.tl-dot{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;position:relative;z-index:1;border:2px solid}
+.tl-dot.offline{background:rgba(255,107,157,.15);border-color:var(--rose);color:var(--rose)}
+.tl-dot.online{background:rgba(199,125,255,.15);border-color:var(--orchid);color:var(--orchid)}
+.tl-dot.special{background:rgba(255,215,0,.15);border-color:var(--gold);color:var(--gold)}
+.tl-body{flex:1;background:var(--glass);border:1px solid var(--glass-b);border-radius:16px;padding:18px 22px;transition:border-color .3s}
+.tl-item:hover .tl-body{border-color:rgba(255,107,157,.3)}
+.tl-date{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.5px;margin-bottom:4px}
+.tl-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:6px;line-height:1.4}
+.tl-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px}
+.tl-badge.offline{background:rgba(255,107,157,.15);color:var(--rose)}
+.tl-badge.online{background:rgba(199,125,255,.15);color:var(--orchid)}
+.tl-badge.special{background:rgba(255,215,0,.15);color:var(--gold)}
+
+/* ===== INCLUDED ===== */
+.included{background:linear-gradient(180deg,#251040 0%,#1a0a2e 100%)}
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.inc-card{background:var(--glass);border:1px solid var(--glass-b);border-radius:20px;padding:30px 24px;text-align:center;transition:transform .3s,box-shadow .3s,border-color .3s}
+.inc-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(199,125,255,.2);border-color:rgba(199,125,255,.3)}
+.inc-ico{font-size:40px;margin-bottom:16px;display:block}
+.inc-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+.inc-text{font-size:13px;color:var(--muted)}
+
+/* ===== MASTERCLASS ===== */
+.masterclass{background:linear-gradient(135deg,#2d1060 0%,#1a0a2e 50%,#3d0a2e 100%);position:relative}
+.mc-header{text-align:center;margin-bottom:56px}
+.mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.mc-card{background:rgba(255,107,157,.07);border:1px solid rgba(255,107,157,.2);border-radius:22px;padding:32px 26px;transition:all .35s}
+.mc-card:hover{background:rgba(255,107,157,.14);border-color:var(--rose);transform:translateY(-6px);box-shadow:0 20px 48px rgba(255,107,157,.2)}
+.mc-num{font-family:var(--fh);font-size:56px;font-weight:700;line-height:1;color:rgba(255,107,157,.2);margin-bottom:10px}
+.mc-ico{font-size:36px;margin-bottom:14px;display:block}
+.mc-title{font-family:var(--fh);font-size:20px;font-weight:700;color:#fff;margin-bottom:10px}
+.mc-text{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* ===== AUTHOR ===== */
+.author{background:linear-gradient(180deg,#1a0a2e 0%,#200d3d 100%);text-align:center}
+.author-photo{width:180px;height:180px;border-radius:50%;margin:0 auto 28px;position:relative;background:linear-gradient(135deg,rgba(255,107,157,.3),rgba(199,125,255,.3));display:flex;align-items:center;justify-content:center;font-size:72px}
+.author-photo::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid transparent;background:linear-gradient(135deg,var(--rose),var(--orchid),var(--gold)) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude}
+.author-name{font-family:var(--fh);font-size:clamp(26px,3.5vw,42px);font-weight:700;color:#fff;margin-bottom:10px}
+.author-sub{font-size:16px;color:var(--rose);font-weight:600;margin-bottom:20px}
+.author-quote{font-family:var(--fh);font-size:clamp(18px,2.5vw,26px);font-style:italic;color:var(--champagne);max-width:600px;margin:0 auto;line-height:1.6}
+.author-stats{display:flex;gap:32px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+.astat{text-align:center}
+.astat-n{font-family:var(--fh);font-size:36px;font-weight:700;color:var(--gold);display:block}
+.astat-l{font-size:13px;color:var(--muted)}
+
+/* ===== PRICING ===== */
+.pricing{background:linear-gradient(180deg,#200d3d 0%,#1a0a2e 100%);text-align:center}
+.price-card{max-width:560px;margin:0 auto;background:var(--glass);backdrop-filter:blur(24px);border-radius:32px;padding:52px 48px;position:relative;overflow:hidden}
+.price-card::before{content:'';position:absolute;inset:0;border-radius:32px;padding:2px;background:linear-gradient(135deg,var(--rose),var(--orchid),var(--gold));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;animation:pulse-border 3s ease-in-out infinite}
+@keyframes pulse-border{0%,100%{opacity:.6}50%{opacity:1}}
+.price-amount{font-family:var(--fh);font-size:72px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px;text-shadow:0 0 30px rgba(255,215,0,.4)}
+.price-label{font-size:16px;color:var(--muted);margin-bottom:36px}
+.price-date{font-size:15px;color:var(--blush);font-weight:600;margin-bottom:28px}
+.btn-phone{display:inline-flex;align-items:center;gap:10px;padding:18px 44px;border-radius:100px;font-size:17px;font-weight:700;text-decoration:none;background:linear-gradient(135deg,var(--rose),var(--orchid));color:#fff;box-shadow:0 8px 32px rgba(255,107,157,.5);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;border:none;cursor:pointer}
+.btn-phone::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2s infinite}
+.btn-phone:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(255,107,157,.7)}
+.price-note{font-size:13px;color:var(--muted);margin-top:20px}
+
+/* ===== FOOTER ===== */
+footer{background:#0f0620;padding:64px 0 36px;border-top:1px solid rgba(255,107,157,.12);text-align:center;position:relative;z-index:1}
+.ft-flower{font-size:36px;margin-bottom:16px;display:block}
+.ft-logo{font-family:var(--fh);font-size:26px;font-weight:700;color:#fff;margin-bottom:10px;display:block}
+.ft-logo span{color:var(--rose)}
+.ft-contact{font-size:16px;color:var(--blush);margin-bottom:6px;font-weight:600}
+.ft-copy{font-size:13px;color:rgba(255,255,255,.3);margin-top:28px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.glass-grid,.inc-grid,.mc-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+section{padding:72px 0}
+.glass-grid,.inc-grid,.mc-grid{grid-template-columns:1fr}
+.hero-content{padding:120px 0 80px}
+.timeline::before{left:24px}
+.tl-dot{width:50px;height:50px;font-size:11px}
+.price-card{padding:36px 24px}
+.price-amount{font-size:56px}
+.author-stats{gap:20px}
+}
+@media(max-width:480px){
+.hero-badges{flex-direction:column;align-items:center}
+.badge{width:100%;justify-content:center;max-width:300px}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="orb-wrap">
+  <div class="orb ob1"></div><div class="orb ob2"></div><div class="orb ob3"></div>
+  <div class="orb ob4"></div><div class="orb ob5"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+<div class="nav-inner">
+  <a href="#" class="nav-logo">🌸 <span>Женский</span> Бизнес-Старт</a>
+  <a href="index.html" class="back-btn">← Главная</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="petals-canvas"></canvas>
+  <div class="wrap">
+  <div class="hero-content">
+    <span class="hero-flower anim">🌸</span>
+    <h1 class="hero-title anim d1" id="typewriter-title"></h1>
+    <p class="hero-sub-title anim d2">Стартуй. Создавай. Действуй.</p>
+    <p class="hero-desc anim d3">Практическая программа для женщин, которые хотят запустить свой бизнес, обрести уверенность и сделать первые шаги к доходу.</p>
+    <div class="anim d4">
+      <a href="#contact" class="btn-cta" id="cta-btn">✨ Записаться на курс</a>
+    </div>
+    <div class="hero-badges anim d4">
+      <span class="badge">🗓 1–30 декабря</span>
+      <span class="badge">💰 7 500 ₽</span>
+      <span class="badge">🔥 30 дней</span>
+      <span class="badge">📚 8 занятий</span>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><defs><linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FF6B9D" stop-opacity=".3"/><stop offset="50%" stop-color="#C77DFF" stop-opacity=".3"/><stop offset="100%" stop-color="#FFD700" stop-opacity=".3"/></linearGradient></defs><path d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z" fill="#200d3d"/></svg></div>
+<!-- ABOUT -->
+<section class="about" id="about">
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">О программе</div>
+    <h2 class="sh">Курс, который начинается<br><span>не с теории, а с тебя</span></h2>
+    <p class="ssub" style="margin:0 auto">Мы не учим по учебникам. Мы работаем с тобой — твоими сильными сторонами, целями и реальностью.</p>
+  </div>
+  <div class="glass-grid">
+    <div class="glass-card anim d1">
+      <span class="gc-ico">🌟</span>
+      <h3 class="gc-title">Раскрытие потенциала</h3>
+      <p class="gc-text">Тесты, практики и глубокие сессии помогут тебе найти свои сильные стороны и понять, в каком направлении двигаться.</p>
+    </div>
+    <div class="glass-card anim d2">
+      <span class="gc-ico">💼</span>
+      <h3 class="gc-title">Реальные инструменты</h3>
+      <p class="gc-text">Никакой лишней теории — только то, что работает. Инструменты, которые ты можешь применить уже на следующий день.</p>
+    </div>
+    <div class="glass-card anim d3">
+      <span class="gc-ico">🤝</span>
+      <h3 class="gc-title">Сильное окружение</h3>
+      <p class="gc-text">Наставники с опытом, поддержка группы и финальная защита проекта — ты не будешь идти в одиночку.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><path d="M0,0 C200,60 400,0 600,40 C800,80 1000,20 1200,0 L1200,60 L0,60 Z" fill="#1a0a2e"/></svg></div>
+
+<!-- FOR WHOM -->
+<section class="for-whom" id="for-whom">
+<div class="wrap">
+  <div style="text-align:center" class="anim">
+    <div class="stag">Для кого</div>
+    <h2 class="sh">Программа создана для тебя, если...</h2>
+  </div>
+  <ul class="fw-list">
+    <li class="fw-item anim d1"><span class="fw-ico">🌱</span><span class="fw-text">Ты давно мечтаешь открыть своё дело, но не знаешь с чего начать</span></li>
+    <li class="fw-item anim d1"><span class="fw-ico">💭</span><span class="fw-text">У тебя есть идея, но нет уверенности и понимания, как её реализовать</span></li>
+    <li class="fw-item anim d2"><span class="fw-ico">💸</span><span class="fw-text">Ты хочешь финансовую независимость и собственный источник дохода</span></li>
+    <li class="fw-item anim d2"><span class="fw-ico">⏳</span><span class="fw-text">Ты устала откладывать на потом — и готова наконец начать действовать</span></li>
+    <li class="fw-item anim d3"><span class="fw-ico">👩‍👧</span><span class="fw-text">Ты мама, домохозяйка или наёмный сотрудник, которая хочет большего</span></li>
+    <li class="fw-item anim d3"><span class="fw-ico">🔄</span><span class="fw-text">Ты в переходном периоде — смена профессии, декрет, переезд — и ищешь новый путь</span></li>
+    <li class="fw-item anim d4"><span class="fw-ico">✨</span><span class="fw-text">Ты хочешь быть в окружении вдохновляющих женщин, которые тоже растут</span></li>
+  </ul>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><path d="M0,40 C300,0 600,60 900,20 C1050,0 1150,40 1200,30 L1200,60 L0,60 Z" fill="#1a0a2e"/></svg></div>
+
+<!-- TIMELINE -->
+<section class="timeline-sec" id="program">
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">Программа</div>
+    <h2 class="sh">8 мощных занятий за <span>30 дней</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item anim"><div class="tl-dot offline">1</div><div class="tl-body"><div class="tl-date">1 декабря (пн)</div><div class="tl-title">Вводный урок: знакомство, цели, группа</div><span class="tl-badge offline">📍 Офлайн · Гоголя 60/1</span></div></div>
+    <div class="tl-item anim d1"><div class="tl-dot online">2</div><div class="tl-body"><div class="tl-date">3 декабря (ср)</div><div class="tl-title">Особенности женского бизнеса. Архетип предпринимателя</div><span class="tl-badge online">💻 Онлайн · Zoom</span></div></div>
+    <div class="tl-item anim d1"><div class="tl-dot offline">3</div><div class="tl-body"><div class="tl-date">6 декабря (сб)</div><div class="tl-title">Практика: определение предпринимательского типа</div><span class="tl-badge offline">📍 Офлайн · Гоголя 60/1</span></div></div>
+    <div class="tl-item anim d2"><div class="tl-dot online">4</div><div class="tl-body"><div class="tl-date">10 декабря (ср)</div><div class="tl-title">Желания по вызову <em style="color:var(--blush);font-size:13px">(Лариса Кудряшова)</em></div><span class="tl-badge online">💻 Онлайн · Zoom</span></div></div>
+    <div class="tl-item anim d2"><div class="tl-dot offline">5</div><div class="tl-body"><div class="tl-date">13 декабря (сб)</div><div class="tl-title">Постановка целей. Технология SMART</div><span class="tl-badge offline">📍 Офлайн · Гоголя 60/1</span></div></div>
+    <div class="tl-item anim d3"><div class="tl-dot online">6</div><div class="tl-body"><div class="tl-date">17 декабря (ср)</div><div class="tl-title">Целеполагание. Эмоциональный интеллект</div><span class="tl-badge online">💻 Онлайн · Zoom</span></div></div>
+    <div class="tl-item anim d3"><div class="tl-dot offline">7</div><div class="tl-body"><div class="tl-date">20 декабря (сб)</div><div class="tl-title">Личный бренд. SMM. Юридические основы. Налоги. ИП/ООО</div><span class="tl-badge offline">📍 Офлайн · Гоголя 60/1</span></div></div>
+    <div class="tl-item anim d4"><div class="tl-dot special">🎓</div><div class="tl-body"><div class="tl-date">30 декабря (вт)</div><div class="tl-title">Выпускной! Финальная защита проектов</div><span class="tl-badge special">🏆 Офлайн · Торжественный вечер</span></div></div>
+  </div>
+</div>
+</section>
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><path d="M0,20 C150,60 350,0 600,30 C850,60 1050,10 1200,40 L1200,60 L0,60 Z" fill="#251040"/></svg></div>
+
+<!-- INCLUDED -->
+<section class="included" id="included">
+<div class="wrap">
+  <div style="text-align:center" class="anim">
+    <div class="stag">Что входит</div>
+    <h2 class="sh">Всё, что нужно для <span>твоего старта</span></h2>
+  </div>
+  <div class="inc-grid">
+    <div class="inc-card anim d1"><span class="inc-ico">📚</span><div class="inc-title">2 занятия в неделю</div><div class="inc-text">Офлайн в Уфе и онлайн через Zoom — выбирай удобный формат</div></div>
+    <div class="inc-card anim d1"><span class="inc-ico">✍️</span><div class="inc-title">Теория + практика</div><div class="inc-text">Каждый урок — это не просто знания, а конкретные действия и результат</div></div>
+    <div class="inc-card anim d2"><span class="inc-ico">📝</span><div class="inc-title">Домашние задания</div><div class="inc-text">Задания закрепляют материал и помогают двигаться вперёд между занятиями</div></div>
+    <div class="inc-card anim d2"><span class="inc-ico">👩‍🏫</span><div class="inc-title">Наставники</div><div class="inc-text">Опытные предприниматели и эксперты, которые делятся реальным опытом</div></div>
+    <div class="inc-card anim d3"><span class="inc-ico">💬</span><div class="inc-title">Поддержка в чате</div><div class="inc-text">Закрытый чат группы 24/7 — вопросы, идеи, вдохновение и поддержка</div></div>
+    <div class="inc-card anim d3"><span class="inc-ico">🎓</span><div class="inc-title">Защита проекта</div><div class="inc-text">Финальный выпускной с презентацией твоего бизнес-проекта перед группой</div></div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><path d="M0,50 C200,10 400,50 600,20 C800,-10 1000,40 1200,10 L1200,60 L0,60 Z" fill="#2d1060"/></svg></div>
+
+<!-- MASTERCLASS -->
+<section class="masterclass" id="masterclass">
+<div class="wrap">
+  <div class="mc-header anim">
+    <div class="stag" style="margin:0 auto 20px">Бонус</div>
+    <h2 class="sh">🔥 Мастер-класс<br><span>«Перезагрузка Женской Силы»</span></h2>
+    <p class="ssub" style="margin:0 auto;text-align:center">Точка А → Точка Б за 60 минут. Три практики, которые изменят твой взгляд на себя и свои возможности.</p>
+  </div>
+  <div class="mc-grid">
+    <div class="mc-card anim d1">
+      <div class="mc-num">01</div>
+      <span class="mc-ico">🌟</span>
+      <h3 class="mc-title">Диагностика Точки А</h3>
+      <p class="mc-text">Матрица 4 зон жизни: финансы, отношения, здоровье, реализация. Честная оценка без самообмана — фундамент любых изменений.</p>
+    </div>
+    <div class="mc-card anim d2">
+      <div class="mc-num">02</div>
+      <span class="mc-ico">🔥</span>
+      <h3 class="mc-title">Техника 5-слойного желания</h3>
+      <p class="mc-text">Найди истинную мотивацию за поверхностными желаниями. Когда знаешь ЗАЧЕМ — вопрос КАК решается сам собой.</p>
+    </div>
+    <div class="mc-card anim d3">
+      <div class="mc-num">03</div>
+      <span class="mc-ico">🌸</span>
+      <h3 class="mc-title">Мой первый реальный шаг</h3>
+      <p class="mc-text">12 конкретных действий, которые ты можешь сделать прямо сейчас. Без прокрастинации, без страха — просто первый шаг.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><path d="M0,10 C300,50 700,0 1000,40 C1100,60 1150,20 1200,30 L1200,60 L0,60 Z" fill="#200d3d"/></svg></div>
+
+<!-- AUTHOR -->
+<section class="author" id="author">
+<div class="wrap">
+  <div class="anim">
+    <div class="author-photo">👩‍💼</div>
+    <div class="stag" style="display:inline-flex;margin-bottom:16px">Об авторе</div>
+    <h2 class="author-name">Байдавлетова Ляйсан</h2>
+    <p class="author-sub">23 года в предпринимательстве · Многодетная мама · Основатель двух школ</p>
+    <p class="author-quote">«Я знаю, что такое начинать с нуля. И я знаю, что внутри каждой женщины есть сила, которая способна изменить всё — нужен только правильный первый шаг.»</p>
+    <div class="author-stats">
+      <div class="astat"><span class="astat-n">23</span><span class="astat-l">года опыта</span></div>
+      <div class="astat"><span class="astat-n">2 100+</span><span class="astat-l">учеников</span></div>
+      <div class="astat"><span class="astat-n">2</span><span class="astat-l">авторские школы</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60"><path d="M0,30 C200,0 500,60 800,20 C950,0 1100,50 1200,30 L1200,60 L0,60 Z" fill="#1a0a2e"/></svg></div>
+
+<!-- PRICING -->
+<section class="pricing" id="contact">
+<div class="wrap">
+  <div class="anim">
+    <div class="stag" style="display:inline-flex;margin-bottom:24px">Стоимость</div>
+    <div class="price-card">
+      <div class="price-amount">7 500 ₽</div>
+      <p class="price-label">полный курс · все 8 занятий · мастер-класс в подарок</p>
+      <p class="price-date">📅 1–30 декабря 2025 · Уфа</p>
+      <a href="tel:+79279319999" class="btn-phone">📲 Записаться: +7 (927) 931-99-99</a>
+      <p class="price-note">Совместно с <strong style="color:var(--blush)">Фабрикой Предпринимательства · Уфа</strong></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="wrap">
+  <span class="ft-flower">🌸🌺🌸</span>
+  <div class="ft-logo">Женский <span>Бизнес-Старт</span></div>
+  <p class="ft-contact">+7 (927) 931-99-99</p>
+  <p style="color:var(--muted);font-size:14px">Байдавлетова Ляйсан · Уфа, Республика Башкортостан</p>
+  <p class="ft-copy">© 2025 Женский Бизнес-Старт. Все права защищены.</p>
+</div>
+</footer>
+<script>
+// PROGRESS BAR
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY,h=document.body.scrollHeight-window.innerHeight;
+  prog.style.width=(s/h*100)+'%';
+},{passive:true});
+
+// NAVBAR
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',window.scrollY>60),{passive:true});
+
+// CANVAS PETALS
+(function(){
+  const canvas=document.getElementById('petals-canvas');
+  const ctx=canvas.getContext('2d');
+  const colors=['#FF6B9D','#C77DFF','#FFB3CC','#FFD700','#ffffff','#f5c6e0'];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  class Petal{
+    reset(fresh){
+      this.x=Math.random()*canvas.width;
+      this.y=fresh?-20:Math.random()*canvas.height;
+      this.size=8+Math.random()*14;
+      this.speedX=(Math.random()-.5)*1.2;
+      this.speedY=0.5+Math.random()*1.5;
+      this.rotation=Math.random()*Math.PI*2;
+      this.rotSpeed=(Math.random()-.5)*.04;
+      this.opacity=.4+Math.random()*.5;
+      this.color=colors[Math.floor(Math.random()*colors.length)];
+      this.wobble=Math.random()*Math.PI*2;
+      this.wobbleSpeed=.02+Math.random()*.02;
+    }
+    update(){
+      this.y+=this.speedY;
+      this.x+=this.speedX+Math.sin(this.wobble)*.6;
+      this.wobble+=this.wobbleSpeed;
+      this.rotation+=this.rotSpeed;
+      if(this.y>canvas.height+20)this.reset(true);
+    }
+    draw(){
+      ctx.save();
+      ctx.translate(this.x,this.y);
+      ctx.rotate(this.rotation);
+      ctx.globalAlpha=this.opacity;
+      ctx.fillStyle=this.color;
+      ctx.beginPath();
+      const s=this.size;
+      ctx.moveTo(0,-s);
+      ctx.bezierCurveTo(s*.55,-s*.5,s*.55,s*.5,0,s);
+      ctx.bezierCurveTo(-s*.55,s*.5,-s*.55,-s*.5,0,-s);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  const petals=Array.from({length:72},()=>{const p=new Petal();p.reset(false);return p;});
+  function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    petals.forEach(p=>{p.update();p.draw();});
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// TYPEWRITER
+(function(){
+  const el=document.getElementById('typewriter-title');
+  const text='Женский Бизнес-Старт';
+  let i=0;
+  function type(){
+    if(i<text.length){el.textContent=text.slice(0,++i);setTimeout(type,60);}
+    else{el.style.borderRight='none';}
+  }
+  el.style.borderRight='2px solid #FF6B9D';
+  el.style.animation='caret .8s steps(1) infinite';
+  const style=document.createElement('style');
+  style.textContent='@keyframes caret{0%,100%{border-color:#FF6B9D}50%{border-color:transparent}}';
+  document.head.appendChild(style);
+  setTimeout(type,600);
+})();
+
+// INTERSECTION OBSERVER
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
+},{threshold:.1});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+
+// SPARKLES ON CTA
+document.querySelectorAll('.btn-cta').forEach(btn=>{
+  btn.addEventListener('mouseenter',function(e){
+    for(let i=0;i<5;i++){
+      const sp=document.createElement('div');
+      sp.className='spark';
+      const tx=(Math.random()-.5)*60,ty=(Math.random()-.5)*60;
+      sp.style.cssText=`left:${e.offsetX+(Math.random()-.5)*30}px;top:${e.offsetY+(Math.random()-.5)*30}px;background:${['#FFD700','#FF6B9D','#ffffff'][i%3]};--tx:${tx}px;--ty:${ty}px;`;
+      this.appendChild(sp);
+      setTimeout(()=>sp.remove(),650);
+    }
+  });
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h==='#')return;
+    e.preventDefault();
+    const t=document.querySelector(h);
+    if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
+  });
+});
+
+// INITIAL VISIBLE
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.anim').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
