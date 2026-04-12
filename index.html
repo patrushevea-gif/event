@@ -18,7 +18,8 @@
   --gray:#6b6b8a;
   --fh:'Unbounded',sans-serif;--fb:'Inter',sans-serif;
   --r:14px;--rL:22px;--rXL:30px;
-  --tr:.3s cubic-bezier(.4,0,.2,1)
+  --tr:.3s cubic-bezier(.4,0,.2,1);
+  color-scheme:dark
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:var(--fb);line-height:1.6;overflow-x:hidden}
@@ -79,7 +80,7 @@ section{padding:96px 0}
 .hero-h .acc{display:block;background:linear-gradient(135deg,var(--yellow),#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:clamp(15px,1.8vw,19px);color:var(--w70);max-width:560px;margin-bottom:44px;line-height:1.75}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--w30);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
+.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--w30);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite;pointer-events:none}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 /* ORIGIN */
 .origin{background:var(--bg)}
@@ -179,7 +180,8 @@ section{padding:96px 0}
 .fi{display:flex;flex-direction:column;gap:7px}
 .fi.full{grid-column:span 2}
 label{font-size:12px;font-weight:700;color:var(--w70);letter-spacing:.3px;text-transform:uppercase}
-input,select,textarea{background:var(--bg2);border:1px solid var(--w10);border-radius:var(--r);padding:13px 16px;color:#fff;font-family:var(--fb);font-size:14px;transition:border-color .3s,box-shadow .3s;outline:none;width:100%}
+input,select,textarea{background:var(--bg2);border:1px solid var(--w10);border-radius:var(--r);padding:13px 16px;color:#fff;font-family:var(--fb);font-size:14px;transition:border-color .3s,box-shadow .3s;outline:none;width:100%;-webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:42px;cursor:pointer}
 input::placeholder,textarea::placeholder{color:var(--gray)}
 input:focus,select:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px var(--purpleG)}
 select option{background:var(--bg2);color:#fff}
@@ -239,7 +241,7 @@ section{padding:72px 0}
 <body>
 <nav class="nav" id="nav">
 <div class="wrap">
-  <a href="#" class="nav-logo">ВСПЫШКА<span>.</span></a>
+  <a href="#" class="nav-logo">ВСПЫШКА</a>
   <ul class="nav-links">
     <li><a href="#origin">О нас</a></li>
     <li><a href="#services">Услуги</a></li>
@@ -543,6 +545,7 @@ section{padding:72px 0}
       Отправить заявку
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="17" height="17"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
+    <div id="ferr" style="display:none;background:rgba(244,63,94,.15);border:1px solid var(--pink);border-radius:var(--r);padding:12px 16px;font-size:13px;color:#fca5a5;margin-top:12px;text-align:center"></div>
     <p class="f-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
   </div>
 </div>
@@ -552,7 +555,7 @@ section{padding:72px 0}
 <div class="wrap">
   <div class="ft-grid">
     <div>
-      <a href="#" class="ft-logo">ВСПЫШКА<span>.</span></a>
+      <a href="#" class="ft-logo">ВСПЫШКА</a>
       <p class="ft-desc">Ивент-агентство нового уровня для детей и подростков. Создаём события, которые запоминаются на всю жизнь.<br><br>Байдавлетова Ляйсан · Уфа</p>
       <div class="socials">
         <a href="#" class="soc">ВК</a>
@@ -631,10 +634,9 @@ function startCount(el){
 }
 
 // PARALLAX HERO
-const orbs=document.querySelectorAll('.orb');
+const heroBg=document.querySelector('.hero-bg');
 window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  orbs.forEach((o,i)=>o.style.transform=`translateY(${y*(0.08+i*0.04)}px)`);
+  if(heroBg)heroBg.style.transform=`translateY(${window.scrollY*0.35}px)`;
 },{passive:true});
 
 // FORM
@@ -642,7 +644,14 @@ function sendForm(){
   const nm=document.getElementById('nm').value.trim();
   const ph=document.getElementById('ph').value.trim();
   const ev=document.getElementById('ev').value;
-  if(!nm||!ph||!ev){alert('Пожалуйста, заполните имя, телефон и тип мероприятия.');return;}
+  const ferr=document.getElementById('ferr');
+  if(!nm||!ph||!ev){
+    ferr.textContent='Пожалуйста, заполните имя, телефон и тип мероприятия.';
+    ferr.style.display='block';
+    setTimeout(()=>ferr.style.display='none',4000);
+    return;
+  }
+  ferr.style.display='none';
   const btn=document.querySelector('.btn-sub');
   btn.innerHTML='✓ Заявка отправлена!';
   btn.style.background='#10b981';
