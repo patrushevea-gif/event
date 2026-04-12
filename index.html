@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВСПЫШКА — Ивент-агентство Байдавлетовой Ляйсан | Уфа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07071a;--bg2:#0f0d26;--bg3:#161240;
+  --purple:#6d28d9;--purpleL:#a78bfa;--purpleG:rgba(109,40,217,.3);
+  --yellow:#facc15;--yellowG:rgba(250,204,21,.25);
+  --pink:#f43f5e;--pinkG:rgba(244,63,94,.25);
+  --white:#fff;--w70:rgba(255,255,255,.7);--w30:rgba(255,255,255,.3);--w10:rgba(255,255,255,.08);
+  --gray:#6b6b8a;
+  --fh:'Unbounded',sans-serif;--fb:'Inter',sans-serif;
+  --r:14px;--rL:22px;--rXL:30px;
+  --tr:.3s cubic-bezier(.4,0,.2,1)
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--fh);line-height:1.1}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.grad{background:linear-gradient(135deg,var(--purpleL),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-y{background:linear-gradient(135deg,var(--yellow),#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.anim{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.anim.fl{transform:translateX(-36px)}.anim.fr{transform:translateX(36px)}
+.anim.on{opacity:1;transform:translate(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:100px;font-family:var(--fh);font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:var(--tr);position:relative;overflow:hidden;letter-spacing:.3px}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);opacity:0;transition:opacity .3s}
+.btn:hover::after{opacity:1}
+.btn-p{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;box-shadow:0 8px 28px var(--purpleG)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 40px var(--purpleG)}
+.btn-y{background:var(--yellow);color:#07071a;box-shadow:0 8px 28px var(--yellowG)}
+.btn-y:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 40px var(--yellowG)}
+.btn-o{background:transparent;color:#fff;border:2px solid var(--w30)}
+.btn-o:hover{border-color:#fff;transform:translateY(-2px)}
+.stag{display:inline-flex;align-items:center;gap:8px;background:var(--w10);border:1px solid var(--w10);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;color:var(--yellow);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px}
+.stitle{font-size:clamp(30px,4vw,54px);font-weight:900;letter-spacing:-1px;margin-bottom:14px}
+.ssub{font-size:17px;color:var(--w70);max-width:580px;line-height:1.7}
+section{padding:96px 0}
+/* NAVBAR */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:background .4s,padding .4s}
+.nav.s{background:rgba(7,7,26,.92);backdrop-filter:blur(16px);padding:12px 0;border-bottom:1px solid var(--w10)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--fh);font-size:21px;font-weight:900;text-decoration:none;color:#fff}
+.nav-logo span{color:var(--yellow)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{color:var(--w70);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.burger span{display:block;width:24px;height:2px;background:#fff;transition:var(--tr)}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-grad{position:absolute;inset:0;background:radial-gradient(ellipse 75% 60% at 70% 50%,rgba(109,40,217,.28) 0%,transparent 70%),radial-gradient(ellipse 55% 50% at 15% 80%,rgba(244,63,94,.18) 0%,transparent 60%),var(--bg)}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);animation:fl 10s ease-in-out infinite}
+.o1{width:520px;height:520px;background:radial-gradient(circle,rgba(109,40,217,.45),transparent 70%);right:-120px;top:-120px;animation-duration:12s}
+.o2{width:420px;height:420px;background:radial-gradient(circle,rgba(244,63,94,.3),transparent 70%);left:-80px;bottom:80px;animation-duration:14s;animation-delay:-4s}
+.o3{width:280px;height:280px;background:radial-gradient(circle,rgba(250,204,21,.22),transparent 70%);right:28%;bottom:-40px;animation-duration:9s;animation-delay:-6s}
+@keyframes fl{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
+.geo{position:absolute;opacity:.12}
+.g1{width:200px;height:200px;border:1.5px solid var(--purpleL);border-radius:50%;top:22%;right:14%;animation:sp 24s linear infinite}
+.g2{width:130px;height:130px;border:1.5px solid var(--yellow);top:58%;right:24%;animation:spd 18s linear infinite}
+.g3{width:85px;height:85px;border:1.5px solid var(--pink);top:32%;left:9%;border-radius:50%;animation:sp 16s linear infinite}
+.g4{width:170px;height:170px;border:1.5px solid var(--purpleL);bottom:22%;left:18%;animation:spd 22s linear infinite;opacity:.08}
+@keyframes sp{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes spd{from{transform:rotate(45deg)}to{transform:rotate(405deg)}}
+.hero-in{position:relative;z-index:2;padding:130px 0 90px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--w10);border:1px solid var(--w10);backdrop-filter:blur(8px);padding:8px 20px;border-radius:100px;font-size:12px;font-weight:700;color:var(--w70);margin-bottom:30px;letter-spacing:.5px}
+.hero-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--yellow);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.hero-h{font-size:clamp(38px,6.5vw,90px);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:26px;max-width:920px}
+.hero-h .acc{display:block;background:linear-gradient(135deg,var(--yellow),#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(15px,1.8vw,19px);color:var(--w70);max-width:560px;margin-bottom:44px;line-height:1.75}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--w30);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+/* ORIGIN */
+.origin{background:var(--bg)}
+.schools{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:60px}
+.sc{background:var(--bg2);border:1px solid var(--w10);border-radius:var(--rL);padding:38px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.sc:hover{border-color:var(--w30);transform:translateY(-4px)}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sc1::before{background:linear-gradient(90deg,var(--purple),var(--pink))}
+.sc2::before{background:linear-gradient(90deg,var(--yellow),#fb923c)}
+.sc-ico{width:54px;height:54px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:22px}
+.sc1 .sc-ico{background:linear-gradient(135deg,rgba(109,40,217,.3),rgba(244,63,94,.3))}
+.sc2 .sc-ico{background:linear-gradient(135deg,rgba(250,204,21,.25),rgba(251,146,60,.25))}
+.sc h3{font-size:19px;font-weight:700;margin-bottom:11px;letter-spacing:-.3px}
+.sc p{color:var(--w70);font-size:14px;line-height:1.75;margin-bottom:26px}
+.sc-stats{display:flex;gap:22px}
+.sst{display:flex;flex-direction:column}
+.sst-n{font-family:var(--fh);font-size:27px;font-weight:900;letter-spacing:-1px}
+.sc1 .sst-n{color:var(--purpleL)}.sc2 .sst-n{color:var(--yellow)}
+.sst-l{font-size:12px;color:var(--w30);font-weight:500}
+.arrow-block{text-align:center;padding:42px 0;position:relative}
+.arrow-block::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,var(--purpleL),transparent)}
+.arrow-txt{position:relative;font-family:var(--fh);font-size:clamp(18px,2.5vw,30px);font-weight:900;background:var(--bg);display:inline-block;padding:8px 30px;letter-spacing:-.3px}
+.totals{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--w10);border-radius:var(--rL);overflow:hidden;margin-top:60px}
+.tot{background:var(--bg2);padding:38px 22px;text-align:center;transition:background .3s}
+.tot:hover{background:var(--bg3)}
+.tot-n{font-family:var(--fh);font-size:clamp(34px,4vw,54px);font-weight:900;letter-spacing:-2px;display:block;background:linear-gradient(135deg,var(--purpleL),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px}
+.tot-l{font-size:13px;color:var(--w70);font-weight:500}
+/* SERVICES */
+.services{background:var(--bg2);position:relative;overflow:hidden}
+.services::before{content:'';position:absolute;top:-180px;right:-180px;width:550px;height:550px;background:radial-gradient(circle,rgba(109,40,217,.1),transparent 70%);pointer-events:none}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.srv{background:var(--bg);border:1px solid var(--w10);border-radius:var(--rL);padding:30px;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.srv::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--purpleG),transparent 60%);opacity:0;transition:opacity .4s}
+.srv:hover{border-color:var(--purple);transform:translateY(-7px);box-shadow:0 22px 44px rgba(0,0,0,.4)}
+.srv:hover::after{opacity:1}
+.srv-ico{width:60px;height:60px;border-radius:var(--r);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:22px;position:relative;z-index:1;transition:transform .3s,background .3s}
+.srv:hover .srv-ico{transform:scale(1.1) rotate(-5deg);background:var(--bg3)}
+.srv h3{font-size:17px;font-weight:700;margin-bottom:10px;letter-spacing:-.3px;position:relative;z-index:1;transition:color .3s}
+.srv:hover h3{color:var(--purpleL)}
+.srv p{font-size:13px;color:var(--w70);line-height:1.75;position:relative;z-index:1}
+.srv-arr{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--purpleL);margin-top:18px;position:relative;z-index:1;opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s}
+.srv:hover .srv-arr{opacity:1;transform:translateX(0)}
+/* WHY */
+.why{background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--w10);border-radius:var(--rXL);overflow:hidden;margin-top:60px}
+.wi{background:var(--bg2);padding:46px;position:relative;overflow:hidden;transition:background .3s}
+.wi:hover{background:var(--bg3)}
+.wi::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--purpleG),transparent 50%);opacity:0;transition:opacity .3s}
+.wi:hover::before{opacity:1}
+.wi-n{font-family:var(--fh);font-size:72px;font-weight:900;line-height:1;color:var(--w10);position:relative;z-index:1;margin-bottom:14px}
+.wi-ico{font-size:38px;margin-bottom:18px;position:relative;z-index:1}
+.wi h3{font-size:20px;font-weight:700;margin-bottom:11px;position:relative;z-index:1}
+.wi p{font-size:14px;color:var(--w70);line-height:1.75;position:relative;z-index:1}
+/* GALLERY */
+.gallery{background:var(--bg2);overflow:hidden}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(2,255px);gap:14px}
+.gi{background:var(--bg3);border-radius:var(--rL);position:relative;overflow:hidden;cursor:pointer;transition:transform .4s,box-shadow .4s}
+.gi:hover{transform:scale(1.025);box-shadow:0 22px 44px rgba(0,0,0,.5);z-index:2}
+.gi:nth-child(1){grid-column:span 5}.gi:nth-child(2){grid-column:span 4}.gi:nth-child(3){grid-column:span 3}
+.gi:nth-child(4){grid-column:span 3}.gi:nth-child(5){grid-column:span 4}.gi:nth-child(6){grid-column:span 5}
+.gi-bg{position:absolute;inset:0}
+.gi:nth-child(1) .gi-bg{background:linear-gradient(135deg,#160a3c,#3d1070)}
+.gi:nth-child(2) .gi-bg{background:linear-gradient(135deg,#1a0525,#6b0038)}
+.gi:nth-child(3) .gi-bg{background:linear-gradient(135deg,#0a1525,#0b3660)}
+.gi:nth-child(4) .gi-bg{background:linear-gradient(135deg,#1a1800,#4a3800)}
+.gi:nth-child(5) .gi-bg{background:linear-gradient(135deg,#190a28,#4a0c68)}
+.gi:nth-child(6) .gi-bg{background:linear-gradient(135deg,#0a1818,#0b4040)}
+.gi-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 60%)}
+.gi-ph{position:absolute;top:50%;left:50%;transform:translate(-50%,-58%);font-size:60px;opacity:.14}
+.gi-info{position:absolute;bottom:0;left:0;right:0;padding:22px;z-index:1}
+.gi-title{font-family:var(--fh);font-size:15px;font-weight:700;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.gi-sub{font-size:12px;color:var(--w70);margin-top:3px}
+/* REVIEWS */
+.reviews{background:var(--bg)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+.rv{background:var(--bg2);border:1px solid var(--w10);border-radius:var(--rL);padding:34px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.rv:hover{transform:translateY(-4px);border-color:var(--purple);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.rv-q{font-size:46px;line-height:1;font-family:Georgia,serif;color:var(--purpleL);opacity:.7;margin-bottom:14px}
+.stars{display:flex;gap:3px;margin-bottom:14px}
+.star{color:var(--yellow);font-size:17px}
+.rv-txt{font-size:14px;color:var(--w70);line-height:1.8;margin-bottom:26px}
+.rv-auth{display:flex;align-items:center;gap:12px}
+.av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:15px;font-weight:900;color:#fff;flex-shrink:0}
+.av1{background:linear-gradient(135deg,var(--purple),var(--pink))}
+.av2{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.av3{background:linear-gradient(135deg,#10b981,#3b82f6)}
+.rv-name{font-weight:700;font-size:14px}
+.rv-meta{font-size:12px;color:var(--gray);margin-top:2px}
+/* CTA FORM */
+.cta-sec{background:var(--bg2);position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(109,40,217,.14),transparent 70%)}
+.cta-top{position:relative;z-index:1;text-align:center;max-width:780px;margin:0 auto 58px}
+.cta-h{font-size:clamp(34px,5vw,62px);font-weight:900;letter-spacing:-2px;margin-bottom:18px}
+.cta-sub{font-size:17px;color:var(--w70);line-height:1.75}
+.form-box{position:relative;z-index:1;background:var(--bg);border:1px solid var(--w10);border-radius:var(--rXL);padding:46px;max-width:620px;margin:0 auto}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.fi{display:flex;flex-direction:column;gap:7px}
+.fi.full{grid-column:span 2}
+label{font-size:12px;font-weight:700;color:var(--w70);letter-spacing:.3px;text-transform:uppercase}
+input,select,textarea{background:var(--bg2);border:1px solid var(--w10);border-radius:var(--r);padding:13px 16px;color:#fff;font-family:var(--fb);font-size:14px;transition:border-color .3s,box-shadow .3s;outline:none;width:100%}
+input::placeholder,textarea::placeholder{color:var(--gray)}
+input:focus,select:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px var(--purpleG)}
+select option{background:var(--bg2);color:#fff}
+textarea{resize:vertical;min-height:90px}
+.btn-sub{margin-top:6px;width:100%;justify-content:center;padding:19px;font-size:15px}
+.f-note{text-align:center;font-size:12px;color:var(--gray);margin-top:14px}
+/* FOOTER */
+footer{background:#040410;padding:76px 0 38px;border-top:1px solid var(--w10)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:60px}
+.ft-logo{font-family:var(--fh);font-size:26px;font-weight:900;color:#fff;display:block;margin-bottom:14px;text-decoration:none}
+.ft-logo span{color:var(--yellow)}
+.ft-desc{font-size:13px;color:var(--gray);line-height:1.75;margin-bottom:22px}
+.socials{display:flex;gap:10px}
+.soc{width:38px;height:38px;border-radius:10px;background:var(--w10);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;text-decoration:none;color:#fff;transition:background .3s,transform .3s}
+.soc:hover{background:var(--purple);transform:translateY(-2px)}
+.ft-col h4{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--w30);margin-bottom:18px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ft-links a{color:var(--gray);text-decoration:none;font-size:13px;transition:color .3s}
+.ft-links a:hover{color:#fff}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid var(--w10);font-size:12px;color:var(--gray)}
+/* RESPONSIVE */
+@media(max-width:1024px){
+.srv-grid{grid-template-columns:repeat(2,1fr)}
+.gal-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+.gi{grid-column:span 1 !important;height:220px}
+.totals{grid-template-columns:repeat(2,1fr)}
+.ft-grid{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media(max-width:768px){
+section{padding:72px 0}
+.nav-links,.nav-cta .btn-p{display:none}
+.burger{display:flex}
+.schools{grid-template-columns:1fr}
+.why-grid{grid-template-columns:1fr}
+.rev-grid{grid-template-columns:1fr}
+.srv-grid{grid-template-columns:1fr}
+.fg{grid-template-columns:1fr}
+.fi.full{grid-column:span 1}
+.form-box{padding:28px 20px}
+.ft-grid{grid-template-columns:1fr;gap:36px}
+.ft-bot{flex-direction:column;gap:10px;text-align:center}
+.hero-h{letter-spacing:-1px}
+.totals{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+.hero-btns{flex-direction:column}
+.btn{width:100%;justify-content:center}
+}
+/* MOBILE MENU */
+.mob-menu{position:fixed;inset:0;background:rgba(7,7,26,.97);backdrop-filter:blur(16px);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .35s}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-menu a{font-family:var(--fh);font-size:clamp(22px,5vw,36px);font-weight:900;color:#fff;text-decoration:none;transition:color .3s}
+.mob-menu a:hover{color:var(--yellow)}
+.mob-close{position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer;padding:8px}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+<div class="wrap">
+  <a href="#" class="nav-logo">ВСПЫШКА<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#origin">О нас</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#gallery">Работы</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#contact" class="btn btn-p" style="padding:11px 22px;font-size:12px">Обсудить проект</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+</nav>
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#origin" class="mob-link">О нас</a>
+  <a href="#services" class="mob-link">Услуги</a>
+  <a href="#gallery" class="mob-link">Работы</a>
+  <a href="#reviews" class="mob-link">Отзывы</a>
+  <a href="#contact" class="mob-link">Контакты</a>
+  <a href="#contact" class="btn btn-y">Обсудить проект</a>
+</div>
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="hero-bg">
+  <div class="hero-grad"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="geo g1"></div><div class="geo g2"></div><div class="geo g3"></div><div class="geo g4"></div>
+</div>
+<div class="wrap">
+<div class="hero-in">
+  <div class="hero-tag anim">Ивент-агентство Байдавлетовой Ляйсан · Уфа</div>
+  <h1 class="hero-h anim d1">
+    МЫ ДЕЛАЛИ<br>
+    <span class="acc">ПРАЗДНИКИ ДЛЯ<br>СОТЕН ДЕТЕЙ.</span><br>
+    ТЕПЕРЬ —<br>ДЛЯ ТВОЕГО.
+  </h1>
+  <p class="hero-sub anim d2">10 лет опыта в двух школах — бизнес-образования и имиджа. Мы знаем, как зажечь детей и восхитить родителей. Теперь это доступно каждому.</p>
+  <div class="hero-btns anim d3">
+    <a href="#contact" class="btn btn-y">Обсудить мероприятие <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="17" height="17"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="#services" class="btn btn-o">Что мы делаем</a>
+  </div>
+</div>
+</div>
+<div class="scroll-ind">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+</div>
+</section>
+<!-- ORIGIN -->
+<section class="origin" id="origin">
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:68px">
+    <div class="stag anim">Наша история</div>
+    <h2 class="stitle anim d1">Откуда мы</h2>
+    <p class="ssub anim d2" style="margin:0 auto">Два проекта. Тысячи детей. Сотни событий. И одно решение, которое всё изменило.</p>
+  </div>
+  <div class="schools">
+    <div class="sc sc1 anim fl">
+      <div class="sc-ico">🚀</div>
+      <h3>Фабрика предпринимательства. Дети</h3>
+      <p>Бизнес-школа для детей и подростков в Уфе. Предпринимательство, финансовая грамотность и лидерство через игры, проекты и живые события.</p>
+      <div class="sc-stats">
+        <div class="sst"><span class="sst-n counter" data-target="1200">0</span><span class="sst-l">учеников</span></div>
+        <div class="sst"><span class="sst-n counter" data-target="80">0</span><span class="sst-l">мероприятий</span></div>
+        <div class="sst"><span class="sst-n counter" data-target="7">0</span><span class="sst-l">лет</span></div>
+      </div>
+    </div>
+    <div class="sc sc2 anim fr">
+      <div class="sc-ico">✨</div>
+      <h3>Имидж Элит</h3>
+      <p>Школа стиля и имиджа для детей и подростков. Уверенность в себе, искусство самовыражения и умение создавать впечатление — с детства.</p>
+      <div class="sc-stats">
+        <div class="sst"><span class="sst-n counter" data-target="900">0</span><span class="sst-l">учеников</span></div>
+        <div class="sst"><span class="sst-n counter" data-target="60">0</span><span class="sst-l">мероприятий</span></div>
+        <div class="sst"><span class="sst-n counter" data-target="5">0</span><span class="sst-l">лет</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow-block anim">
+    <p class="arrow-txt">Всё это привело к <span class="grad">одному решению →</span></p>
+  </div>
+  <div class="totals">
+    <div class="tot anim"><span class="tot-n counter" data-target="10">0</span><span class="tot-l">лет работы с детьми</span></div>
+    <div class="tot anim d1"><span class="tot-n counter" data-target="2100">0</span><span class="tot-l">детей и подростков</span></div>
+    <div class="tot anim d2"><span class="tot-n counter" data-target="140">0</span><span class="tot-l">мероприятий проведено</span></div>
+    <div class="tot anim d3"><span class="tot-n counter" data-target="98">0</span><span class="tot-l">% довольных родителей</span></div>
+  </div>
+</div>
+</section>
+<!-- SERVICES -->
+<section class="services" id="services">
+<div class="wrap">
+  <div style="margin-bottom:58px">
+    <div class="stag anim">Что мы делаем</div>
+    <h2 class="stitle anim d1">Мероприятия,<br><span class="grad">о которых говорят</span></h2>
+    <p class="ssub anim d2">Каждый формат — продуманный сценарий, профессиональная команда и незабываемые эмоции.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv anim">
+      <div class="srv-ico">🎂</div>
+      <h3>Дни рождения нового уровня</h3>
+      <p>Не просто торт и шарики. Целый мир для виновника торжества — тема, квест, шоу, крутые активности.</p>
+      <span class="srv-arr">Подробнее →</span>
+    </div>
+    <div class="srv anim d1">
+      <div class="srv-ico">👨‍👩‍👧‍👦</div>
+      <h3>Корпоративы для семей</h3>
+      <p>Командные игры и мастер-классы, где дети и родители открывают друг друга заново.</p>
+      <span class="srv-arr">Подробнее →</span>
+    </div>
+    <div class="srv anim d2">
+      <div class="srv-ico">🎓</div>
+      <h3>Выпускные и прощальные вечера</h3>
+      <p>Эмоциональные и стильные церемонии для школ и садиков. Создаём память навсегда.</p>
+      <span class="srv-arr">Подробнее →</span>
+    </div>
+    <div class="srv anim d1">
+      <div class="srv-ico">💡</div>
+      <h3>Бизнес-квесты и образовательные ивенты</h3>
+      <p>Уникальный формат: развлечение + обучение. Дети играют и получают навыки — родители в восторге.</p>
+      <span class="srv-arr">Подробнее →</span>
+    </div>
+    <div class="srv anim d2">
+      <div class="srv-ico">🔥</div>
+      <h3>Тематические вечеринки для подростков</h3>
+      <p>Актуальные форматы без скуки и банальщины. Музыка, активности, атмосфера — всё на уровне.</p>
+      <span class="srv-arr">Подробнее →</span>
+    </div>
+    <div class="srv anim d3">
+      <div class="srv-ico">⚡</div>
+      <h3>Мероприятия под ключ</h3>
+      <p>Полное сопровождение для школ, центров и организаций: концепция, сценарий, команда, реализация.</p>
+      <span class="srv-arr">Подробнее →</span>
+    </div>
+  </div>
+</div>
+</section>
+<!-- WHY -->
+<section class="why" id="why">
+<div class="wrap">
+  <div class="stag anim">Наши преимущества</div>
+  <h2 class="stitle anim d1">Почему выбирают нас</h2>
+  <p class="ssub anim d2">Мы не просто организаторы. Мы педагоги, которые научились делать невероятные события.</p>
+  <div class="why-grid">
+    <div class="wi anim">
+      <div class="wi-n">01</div>
+      <div class="wi-ico">🧠</div>
+      <h3>Знаем детей изнутри</h3>
+      <p>10 лет работы с детьми и подростками. Мы понимаем психологию каждого возраста, знаем как удержать внимание и почему дети будут говорить об этом ещё месяц после события.</p>
+    </div>
+    <div class="wi anim d1">
+      <div class="wi-n">02</div>
+      <div class="wi-ico">🎭</div>
+      <h3>Шоу + смыслы = магия</h3>
+      <p>Каждое наше мероприятие — это не просто развлечение. Это опыт, который что-то меняет. Дети уходят не только счастливыми, но и вдохновлёнными.</p>
+    </div>
+    <div class="wi anim d2">
+      <div class="wi-n">03</div>
+      <div class="wi-ico">📍</div>
+      <h3>Свои площадки в Уфе</h3>
+      <p>Нам не нужно искать — мы уже знаем лучшие места в городе. Собственные площадки и проверенные партнёры экономят время и деньги без потери качества.</p>
+    </div>
+    <div class="wi anim d3">
+      <div class="wi-n">04</div>
+      <div class="wi-ico">👥</div>
+      <h3>Педагоги + ивентщики</h3>
+      <p>Уникальное сочетание: профессиональные организаторы мероприятий плюс педагоги с опытом работы с детьми. Безопасно, структурированно и по-настоящему ярко.</p>
+    </div>
+  </div>
+</div>
+</section>
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+<div class="wrap">
+  <div style="margin-bottom:58px">
+    <div class="stag anim">Наши работы</div>
+    <h2 class="stitle anim d1">Вот как это выглядит</h2>
+    <p class="ssub anim d2">Каждое событие — отдельная история. Здесь — несколько глав.</p>
+  </div>
+  <div class="gal-grid">
+    <div class="gi anim">
+      <div class="gi-bg"></div>
+      <div class="gi-ph">🎓</div>
+      <div class="gi-ov"></div>
+      <div class="gi-info"><div class="gi-title">Выпускной 2024</div><div class="gi-sub">Гимназия №3 · 120 человек</div></div>
+    </div>
+    <div class="gi anim d1">
+      <div class="gi-bg"></div>
+      <div class="gi-ph">💡</div>
+      <div class="gi-ov"></div>
+      <div class="gi-info"><div class="gi-title">Бизнес-квест</div><div class="gi-sub">«Стартап за 6 часов» · 80 подростков</div></div>
+    </div>
+    <div class="gi anim d2">
+      <div class="gi-bg"></div>
+      <div class="gi-ph">🎂</div>
+      <div class="gi-ov"></div>
+      <div class="gi-info"><div class="gi-title">День рождения на 50 человек</div><div class="gi-sub">Тема «Будущее» · 12 лет</div></div>
+    </div>
+    <div class="gi anim d1">
+      <div class="gi-bg"></div>
+      <div class="gi-ph">🔥</div>
+      <div class="gi-ov"></div>
+      <div class="gi-info"><div class="gi-title">Подростковая вечеринка «Неон»</div><div class="gi-sub">40 человек · 14–17 лет</div></div>
+    </div>
+    <div class="gi anim d2">
+      <div class="gi-bg"></div>
+      <div class="gi-ph">👗</div>
+      <div class="gi-ov"></div>
+      <div class="gi-info"><div class="gi-title">Fashion-показ</div><div class="gi-sub">Имидж-проект · 60 участников</div></div>
+    </div>
+    <div class="gi anim d3">
+      <div class="gi-bg"></div>
+      <div class="gi-ph">👨‍👩‍👧</div>
+      <div class="gi-ov"></div>
+      <div class="gi-info"><div class="gi-title">Семейный квест-корпоратив</div><div class="gi-sub">15 семей · Уфа · 2024</div></div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+<div class="wrap">
+  <div class="stag anim">Отзывы</div>
+  <h2 class="stitle anim d1">Родители говорят</h2>
+  <p class="ssub anim d2">Нам доверяют самое ценное. И мы это ценим.</p>
+  <div class="rev-grid">
+    <div class="rv anim">
+      <div class="rv-q">"</div>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rv-txt">Заказывали день рождения для дочки на 12 лет. Ожидала обычный праздник, а получила настоящее шоу! Дети были в полном восторге, не хотели расходиться. Организаторы продумали каждую деталь. Однозначно будем обращаться снова!</p>
+      <div class="rv-auth">
+        <div class="av av1">АМ</div>
+        <div><div class="rv-name">Алина Мухамедова</div><div class="rv-meta">Мама Дарины, 12 лет · Уфа</div></div>
+      </div>
+    </div>
+    <div class="rv anim d1">
+      <div class="rv-q">"</div>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rv-txt">Заказывали выпускной для 9-го класса нашей школы. Ребята до сих пор вспоминают этот вечер. Команда ВСПЫШКА сделала программу, в которой каждый чувствовал себя звездой. Всё чётко, профессионально и душевно одновременно.</p>
+      <div class="rv-auth">
+        <div class="av av2">ОС</div>
+        <div><div class="rv-name">Ольга Сафина</div><div class="rv-meta">Классный руководитель, школа №14 · Уфа</div></div>
+      </div>
+    </div>
+    <div class="rv anim d2">
+      <div class="rv-q">"</div>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rv-txt">Участвовали в семейном корпоративе. Мой сын-подросток — а он вечно всем недоволен — сам попросил поучаствовать снова. Команда умеет работать с детьми разных возрастов. Рекомендую всем, кто хочет настоящего события!</p>
+      <div class="rv-auth">
+        <div class="av av3">РК</div>
+        <div><div class="rv-name">Руслан Каримов</div><div class="rv-meta">Папа Тимура, 15 лет · Уфа</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- CTA FORM -->
+<section class="cta-sec" id="contact">
+<div class="wrap">
+  <div class="cta-top">
+    <div class="stag anim" style="display:inline-flex">Давайте создадим</div>
+    <h2 class="cta-h anim d1">Ваш праздник<br><span class="grad">уже ждёт</span></h2>
+    <p class="cta-sub anim d2">Оставьте заявку — и мы свяжемся в течение часа, чтобы обсудить мечту и превратить её в реальность.</p>
+  </div>
+  <div class="form-box anim d2">
+    <div class="fg">
+      <div class="fi">
+        <label for="nm">Ваше имя</label>
+        <input type="text" id="nm" placeholder="Алина Иванова">
+      </div>
+      <div class="fi">
+        <label for="ph">Телефон</label>
+        <input type="tel" id="ph" placeholder="+7 (347) 000-00-00">
+      </div>
+      <div class="fi">
+        <label for="ev">Тип мероприятия</label>
+        <select id="ev">
+          <option value="" disabled selected>Выберите формат</option>
+          <option>День рождения</option>
+          <option>Выпускной</option>
+          <option>Корпоратив для семьи</option>
+          <option>Бизнес-квест</option>
+          <option>Вечеринка для подростков</option>
+          <option>Мероприятие для школы</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="fi">
+        <label for="dt">Примерная дата</label>
+        <input type="date" id="dt">
+      </div>
+      <div class="fi full">
+        <label for="msg">Пожелания (необязательно)</label>
+        <textarea id="msg" placeholder="Количество гостей, пожелания, вопросы..."></textarea>
+      </div>
+    </div>
+    <button class="btn btn-y btn-sub" onclick="sendForm()">
+      Отправить заявку
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="17" height="17"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <p class="f-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+  </div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+<div class="wrap">
+  <div class="ft-grid">
+    <div>
+      <a href="#" class="ft-logo">ВСПЫШКА<span>.</span></a>
+      <p class="ft-desc">Ивент-агентство нового уровня для детей и подростков. Создаём события, которые запоминаются на всю жизнь.<br><br>Байдавлетова Ляйсан · Уфа</p>
+      <div class="socials">
+        <a href="#" class="soc">ВК</a>
+        <a href="#" class="soc">ТГ</a>
+        <a href="#" class="soc">ИН</a>
+        <a href="#" class="soc">WA</a>
+      </div>
+    </div>
+    <div>
+      <h4>Услуги</h4>
+      <ul class="ft-links">
+        <li><a href="#services">Дни рождения</a></li>
+        <li><a href="#services">Выпускные</a></li>
+        <li><a href="#services">Корпоративы</a></li>
+        <li><a href="#services">Бизнес-квесты</a></li>
+        <li><a href="#services">Вечеринки</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Наши школы</h4>
+      <ul class="ft-links">
+        <li><a href="#">Фабрика предпринимательства. Дети</a></li>
+        <li><a href="#">Имидж Элит</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <ul class="ft-links">
+        <li><a href="tel:+73470000000">+7 (347) 000-00-00</a></li>
+        <li><a href="mailto:hello@vspyshka.ru">hello@vspyshka.ru</a></li>
+        <li><a href="#">г. Уфа, Республика Башкортостан</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2024 ВСПЫШКА — ивент-агентство Байдавлетовой Ляйсан</span>
+    <span>Уфа, Республика Башкортостан</span>
+  </div>
+</div>
+</footer>
+<script>
+// NAVBAR
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('s',window.scrollY>50)},{passive:true});
+
+// MOBILE MENU
+const burger=document.getElementById('burger');
+const mobMenu=document.getElementById('mobMenu');
+const mobClose=document.getElementById('mobClose');
+burger.addEventListener('click',()=>mobMenu.classList.add('open'));
+mobClose.addEventListener('click',()=>mobMenu.classList.remove('open'));
+document.querySelectorAll('.mob-link,.mob-menu .btn').forEach(a=>a.addEventListener('click',()=>mobMenu.classList.remove('open')));
+
+// INTERSECTION OBSERVER
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      e.target.querySelectorAll('.counter').forEach(startCount);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+
+// COUNTER
+function startCount(el){
+  if(el.dataset.started)return;
+  el.dataset.started='1';
+  const target=+el.dataset.target,dur=1800,step=target/(dur/16);
+  let cur=0;
+  const t=setInterval(()=>{
+    cur+=step;
+    if(cur>=target){cur=target;clearInterval(t);}
+    el.textContent=Math.floor(cur).toLocaleString('ru-RU');
+  },16);
+}
+
+// PARALLAX HERO
+const orbs=document.querySelectorAll('.orb');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  orbs.forEach((o,i)=>o.style.transform=`translateY(${y*(0.08+i*0.04)}px)`);
+},{passive:true});
+
+// FORM
+function sendForm(){
+  const nm=document.getElementById('nm').value.trim();
+  const ph=document.getElementById('ph').value.trim();
+  const ev=document.getElementById('ev').value;
+  if(!nm||!ph||!ev){alert('Пожалуйста, заполните имя, телефон и тип мероприятия.');return;}
+  const btn=document.querySelector('.btn-sub');
+  btn.innerHTML='✓ Заявка отправлена!';
+  btn.style.background='#10b981';
+  btn.style.boxShadow='0 8px 28px rgba(16,185,129,.3)';
+  btn.disabled=true;
+  setTimeout(()=>{
+    btn.innerHTML='Отправить заявку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="17" height="17"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    btn.style.background='';btn.style.boxShadow='';btn.disabled=false;
+  },3500);
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h==='#')return;
+    e.preventDefault();
+    const t=document.querySelector(h);
+    if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-74,behavior:'smooth'});
+  });
+});
+
+// INITIAL VISIBLE
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.anim').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
