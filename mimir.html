@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МИМИР — Пространство вдохновения и событий | Гоголя 60/1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1520;--bg2:#131e2e;--bg3:#1a2a3c;
+  --gold:#C9943E;--goldL:#E8B44A;--goldD:#8B6914;--goldG:rgba(201,148,62,.25);
+  --cream:#F5F0E8;--champagne:#EDD9A3;
+  --teal:#2d6b6e;--tealL:#4a9096;
+  --text:#e8e0d0;--muted:rgba(232,224,208,.6);
+  --glass:rgba(201,148,62,.07);--glass-b:rgba(201,148,62,.2);
+  --fh:'Cormorant Garamond',serif;--fb:'Inter',sans-serif;
+  color-scheme:dark
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 20% 30%,rgba(201,148,62,.07),transparent),
+             radial-gradient(ellipse 50% 40% at 80% 70%,rgba(45,107,110,.06),transparent);
+  pointer-events:none;z-index:0}
+
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--goldD),var(--gold),var(--goldL),var(--champagne));z-index:999;transition:width .1s}
+
+/* ORBS */
+.orb-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);animation:drift linear infinite}
+.ob1{width:600px;height:600px;background:radial-gradient(circle,rgba(201,148,62,.35),transparent 70%);top:-150px;right:-100px;animation-duration:26s;opacity:.25}
+.ob2{width:450px;height:450px;background:radial-gradient(circle,rgba(45,107,110,.4),transparent 70%);bottom:5%;left:-100px;animation-duration:20s;animation-delay:-8s;opacity:.2}
+.ob3{width:350px;height:350px;background:radial-gradient(circle,rgba(201,148,62,.3),transparent 70%);top:50%;right:5%;animation-duration:22s;animation-delay:-12s;opacity:.18}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.06)}66%{transform:translate(-25px,30px) scale(.96)}100%{transform:translate(0,0) scale(1)}}
+
+/* NAVBAR */
+.nav{position:fixed;top:3px;left:0;right:0;z-index:100;padding:16px 0;transition:background .4s}
+.nav.s{background:rgba(13,21,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,148,62,.15)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--fh);font-size:22px;font-weight:700;letter-spacing:2px;color:var(--goldL);text-decoration:none;text-shadow:0 0 20px rgba(201,148,62,.4)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--cream)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 22px;border-radius:100px;font-family:var(--fb);font-size:13px;font-weight:600;text-decoration:none;background:rgba(201,148,62,.1);border:1px solid rgba(201,148,62,.25);color:var(--champagne);transition:all .3s;backdrop-filter:blur(8px)}
+.back-btn:hover{background:rgba(201,148,62,.22);border-color:var(--gold);color:var(--cream)}
+
+/* LAYOUT */
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+section{padding:100px 0;position:relative;z-index:1;overflow:hidden}
+
+/* TAG */
+.stag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,148,62,.1);border:1px solid rgba(201,148,62,.3);padding:7px 20px;border-radius:100px;font-size:11px;font-weight:700;color:var(--goldL);letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.stag::before{content:'✦';font-size:12px}
+
+/* HEADINGS */
+h2.sh{font-family:var(--fh);font-size:clamp(34px,5vw,62px);font-weight:700;font-style:italic;letter-spacing:-.3px;margin-bottom:18px;color:var(--cream);text-shadow:0 0 40px rgba(201,148,62,.35)}
+h2.sh span{background:linear-gradient(135deg,var(--gold),var(--goldL));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.ssub{font-size:17px;color:var(--muted);max-width:620px;line-height:1.85}
+
+/* ANIM */
+.anim{opacity:0;transform:translateY(28px);transition:opacity .85s ease,transform .85s ease}
+.anim.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}.d5{transition-delay:.58s}
+
+/* BUTTONS */
+.btn-cta{display:inline-flex;align-items:center;gap:10px;padding:18px 46px;border-radius:100px;font-family:var(--fh);font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;border:none;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--goldD),var(--gold),var(--goldL));color:#0d1520;box-shadow:0 8px 32px rgba(201,148,62,.5);transition:transform .3s,box-shadow .3s;letter-spacing:.5px}
+.btn-cta::before{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2.5s infinite}
+@keyframes shimmer{0%{left:-100%}100%{left:160%}}
+.btn-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(201,148,62,.7)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:17px 44px;border-radius:100px;font-family:var(--fh);font-size:17px;font-weight:600;text-decoration:none;cursor:pointer;border:2px solid rgba(201,148,62,.4);color:var(--champagne);background:transparent;transition:all .3s;letter-spacing:.5px}
+.btn-outline:hover{border-color:var(--gold);color:var(--cream);background:rgba(201,148,62,.08);transform:translateY(-2px)}
+
+/* WAVE */
+.wave{width:100%;line-height:0;position:relative;z-index:2}
+.wave svg{display:block;width:100%}
+
+/* RUNE DECOR */
+.rune{position:absolute;pointer-events:none;z-index:0;font-family:var(--fh);font-weight:700;color:rgba(201,148,62,.06);line-height:1;user-select:none}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0}
+#particles-canvas{position:absolute;inset:0;pointer-events:none;z-index:1}
+.hero-content{position:relative;z-index:2;padding:140px 0 100px;text-align:center;max-width:860px;margin:0 auto}
+.hero-rune{font-family:var(--fh);font-size:16px;font-weight:600;letter-spacing:6px;color:var(--goldD);text-transform:uppercase;margin-bottom:24px;display:block;opacity:.7}
+.hero-title{font-family:var(--fh);font-size:clamp(70px,12vw,160px);font-weight:700;line-height:1;letter-spacing:12px;color:var(--cream);text-shadow:0 0 80px rgba(201,148,62,.5),0 0 160px rgba(201,148,62,.2);margin-bottom:18px}
+.hero-subtitle{font-family:var(--fh);font-size:clamp(18px,2.5vw,28px);font-weight:400;font-style:italic;color:var(--champagne);margin-bottom:20px;letter-spacing:.5px;text-shadow:0 0 20px rgba(201,148,62,.3)}
+.hero-divider{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px auto;opacity:.6}
+.hero-desc{font-size:clamp(15px,1.7vw,18px);color:var(--muted);max-width:560px;margin:0 auto 44px;line-height:1.9}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,148,62,.08);border:1px solid rgba(201,148,62,.2);backdrop-filter:blur(12px);padding:10px 20px;border-radius:100px;font-family:var(--fh);font-size:14px;font-weight:600;color:var(--champagne)}
+
+/* SOURCE SYMBOL */
+.source-symbol{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1;opacity:.04}
+</style>
+<style>
+/* PHILOSOPHY */
+.philosophy{background:linear-gradient(160deg,#0d1520 0%,#111e2c 100%)}
+.phil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.phil-card{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(20px);border-radius:24px;padding:38px 30px;transition:all .38s;position:relative;overflow:hidden;text-align:center}
+.phil-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.phil-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,148,62,.3),transparent)}
+.phil-card:hover{transform:translateY(-8px);box-shadow:0 28px 56px rgba(201,148,62,.18);border-color:rgba(201,148,62,.4);background:rgba(201,148,62,.1)}
+.phil-ico{font-size:48px;margin-bottom:18px;display:block;filter:drop-shadow(0 0 12px rgba(201,148,62,.4))}
+.phil-title{font-family:var(--fh);font-size:22px;font-weight:700;font-style:italic;color:var(--cream);margin-bottom:12px}
+.phil-text{font-size:14px;color:var(--muted);line-height:1.85}
+
+/* PACKAGES */
+.packages{background:linear-gradient(160deg,#111e2c 0%,#0d1a28 100%)}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:58px}
+.pkg-card{border-radius:28px;padding:42px 32px;position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s;cursor:default}
+.pkg-card::before{content:'';position:absolute;inset:0;border-radius:28px;padding:2px;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude}
+.pkg-1{background:linear-gradient(145deg,rgba(45,107,110,.15),rgba(13,21,32,.8))}
+.pkg-1::before{background:linear-gradient(135deg,var(--tealL),transparent,var(--teal))}
+.pkg-2{background:linear-gradient(145deg,rgba(201,148,62,.12),rgba(13,21,32,.8))}
+.pkg-2::before{background:linear-gradient(135deg,var(--gold),transparent,var(--goldD));animation:pulse-b 3s ease-in-out infinite}
+.pkg-3{background:linear-gradient(145deg,rgba(139,105,20,.18),rgba(13,21,32,.8))}
+.pkg-3::before{background:linear-gradient(135deg,var(--goldL),var(--champagne),var(--goldD))}
+@keyframes pulse-b{0%,100%{opacity:.6}50%{opacity:1}}
+.pkg-card:hover{transform:translateY(-10px);box-shadow:0 30px 64px rgba(0,0,0,.5)}
+.pkg-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px}
+.pkg-1 .pkg-badge{background:rgba(45,107,110,.2);color:var(--tealL);border:1px solid rgba(45,107,110,.4)}
+.pkg-2 .pkg-badge{background:rgba(201,148,62,.15);color:var(--goldL);border:1px solid rgba(201,148,62,.4)}
+.pkg-3 .pkg-badge{background:rgba(232,180,74,.15);color:var(--champagne);border:1px solid rgba(232,180,74,.5)}
+.pkg-ico{font-size:48px;margin-bottom:16px;display:block;filter:drop-shadow(0 0 12px rgba(201,148,62,.3))}
+.pkg-name{font-family:var(--fh);font-size:28px;font-weight:700;color:var(--cream);margin-bottom:6px;letter-spacing:.5px}
+.pkg-tagline{font-family:var(--fh);font-size:15px;font-style:italic;color:var(--muted);margin-bottom:22px}
+.pkg-info{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;gap:16px;flex-wrap:wrap}
+.pkg-info span{background:rgba(255,255,255,.05);padding:4px 12px;border-radius:100px;border:1px solid rgba(255,255,255,.08)}
+.pkg-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.pkg-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);line-height:1.5}
+.pkg-list li::before{content:'✦';color:var(--gold);flex-shrink:0;font-size:10px;margin-top:3px}
+.pkg-price{font-family:var(--fh);font-size:36px;font-weight:700;color:var(--goldL);text-shadow:0 0 20px rgba(201,148,62,.4);letter-spacing:-.5px}
+.pkg-price-sub{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* AMBASSADORS */
+.ambassadors{background:linear-gradient(160deg,#0d1a28 0%,#0f1e2e 100%)}
+.amb-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:58px}
+.amb-card{background:var(--glass);border:1px solid var(--glass-b);border-radius:22px;padding:28px 20px;text-align:center;transition:all .38s;position:relative;overflow:hidden}
+.amb-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.amb-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(201,148,62,.2);border-color:rgba(201,148,62,.35);background:rgba(201,148,62,.09)}
+.amb-card:hover::before{opacity:1}
+.amb-emoji{font-size:48px;margin-bottom:14px;display:block;filter:drop-shadow(0 0 10px rgba(201,148,62,.35))}
+.amb-name{font-family:var(--fh);font-size:17px;font-weight:700;font-style:italic;color:var(--cream);margin-bottom:8px;line-height:1.2}
+.amb-role{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.amb-palette{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.amb-color{font-size:11px;color:rgba(201,148,62,.7);font-style:italic;font-family:var(--fh)}
+
+/* MASTERCLASSES */
+.masterclasses{background:linear-gradient(160deg,#0f1e2e 0%,#0d1520 100%)}
+.mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:58px}
+.mc-card{background:var(--glass);border:1px solid var(--glass-b);border-radius:22px;padding:32px 26px;transition:all .38s;position:relative;overflow:hidden}
+.mc-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--goldD));opacity:0;transition:opacity .3s}
+.mc-card:hover{transform:translateX(6px);border-color:rgba(201,148,62,.35);background:rgba(201,148,62,.09);box-shadow:0 16px 40px rgba(201,148,62,.15)}
+.mc-card:hover::before{opacity:1}
+.mc-ico{font-size:38px;margin-bottom:16px;display:block}
+.mc-num{font-family:var(--fh);font-size:52px;font-weight:700;font-style:italic;color:rgba(201,148,62,.12);line-height:1;margin-bottom:10px}
+.mc-name{font-family:var(--fh);font-size:20px;font-weight:700;font-style:italic;color:var(--cream);margin-bottom:10px}
+.mc-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.mc-meta{display:flex;gap:10px;flex-wrap:wrap}
+.mc-tag{font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(201,148,62,.1);color:var(--goldL);border:1px solid rgba(201,148,62,.2)}
+</style>
+<style>
+/* PRICING TABLE */
+.pricing-sec{background:linear-gradient(160deg,#0d1520 0%,#111e2c 100%)}
+.price-table{width:100%;border-collapse:collapse;margin-top:42px;border-radius:18px;overflow:hidden}
+.price-table th{background:rgba(201,148,62,.12);color:var(--goldL);font-family:var(--fh);font-size:15px;font-weight:700;font-style:italic;padding:16px 20px;text-align:left;border-bottom:1px solid rgba(201,148,62,.2)}
+.price-table td{padding:14px 20px;font-size:14px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+.price-table tr:last-child td{border-bottom:none}
+.price-table tr:hover td{background:rgba(201,148,62,.04)}
+.price-table td:last-child{color:var(--goldL);font-weight:600;font-family:var(--fh);font-size:16px;white-space:nowrap}
+.bonus-block{background:rgba(201,148,62,.07);border:1px solid rgba(201,148,62,.2);border-radius:18px;padding:28px 32px;margin-top:32px}
+.bonus-title{font-family:var(--fh);font-size:20px;font-weight:700;font-style:italic;color:var(--champagne);margin-bottom:14px}
+.bonus-text{font-size:14px;color:var(--muted);line-height:1.8}
+
+/* CTA */
+.cta-sec{background:linear-gradient(135deg,#111e2c 0%,#0d1520 50%,#141a2e 100%);position:relative;text-align:center}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,148,62,.1),transparent 70%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:740px;margin:0 auto}
+.cta-rune{font-family:var(--fh);font-size:80px;font-weight:700;color:rgba(201,148,62,.08);line-height:1;margin-bottom:-20px;display:block}
+.cta-title{font-family:var(--fh);font-size:clamp(36px,5vw,66px);font-weight:700;font-style:italic;color:var(--cream);margin-bottom:20px;letter-spacing:-.3px;text-shadow:0 0 40px rgba(201,148,62,.35)}
+.cta-sub{font-family:var(--fh);font-size:clamp(17px,2vw,22px);font-style:italic;color:var(--muted);margin-bottom:44px;line-height:1.8}
+.cta-contact-card{background:var(--glass);border:1px solid var(--glass-b);border-radius:28px;padding:42px;margin-top:40px;display:inline-block;min-width:360px}
+.cta-phone{font-family:var(--fh);font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--goldL);text-decoration:none;display:block;margin-bottom:10px;transition:color .3s;text-shadow:0 0 20px rgba(201,148,62,.3)}
+.cta-phone:hover{color:var(--cream)}
+.cta-addr{font-family:var(--fh);font-size:16px;font-style:italic;color:var(--muted);margin-top:8px}
+
+/* FOOTER */
+footer{background:#080e18;padding:72px 0 40px;border-top:1px solid rgba(201,148,62,.12);text-align:center;position:relative;z-index:1;overflow:hidden}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldD),var(--gold),var(--goldL),var(--gold),var(--goldD),transparent)}
+.ft-symbol{font-size:52px;margin-bottom:18px;display:block;color:var(--gold);filter:drop-shadow(0 0 20px rgba(201,148,62,.5));animation:pulse-gold 4s ease-in-out infinite}
+@keyframes pulse-gold{0%,100%{filter:drop-shadow(0 0 20px rgba(201,148,62,.5))}50%{filter:drop-shadow(0 0 40px rgba(201,148,62,.8))}}
+.ft-logo{font-family:var(--fh);font-size:36px;font-weight:700;letter-spacing:6px;color:var(--cream);display:block;margin-bottom:12px;text-shadow:0 0 30px rgba(201,148,62,.4)}
+.ft-tagline{font-family:var(--fh);font-size:17px;font-style:italic;color:var(--muted);margin-bottom:24px}
+.ft-contact{font-family:var(--fh);font-size:17px;color:var(--goldL)}
+.ft-addr{font-size:14px;color:var(--muted);margin-top:6px;font-family:var(--fh);font-style:italic}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.2);margin-top:32px}
+.ft-bg-rune{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);font-size:400px;font-family:var(--fh);font-weight:700;color:rgba(201,148,62,.025);pointer-events:none;white-space:nowrap}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.phil-grid{grid-template-columns:repeat(2,1fr)}
+.pkg-grid{grid-template-columns:repeat(2,1fr)}
+.amb-grid{grid-template-columns:repeat(3,1fr)}
+.mc-grid{grid-template-columns:repeat(2,1fr)}
+.nav-links{display:none}
+}
+@media(max-width:768px){
+section{padding:76px 0}
+.phil-grid,.pkg-grid,.mc-grid{grid-template-columns:1fr}
+.amb-grid{grid-template-columns:repeat(2,1fr)}
+.hero-content{padding:120px 0 80px}
+.cta-contact-card{min-width:0;width:100%}
+}
+@media(max-width:480px){
+.hero-btns{flex-direction:column;align-items:center}
+.btn-cta,.btn-outline{width:100%;justify-content:center}
+.amb-grid{grid-template-columns:1fr 1fr}
+.hero-title{letter-spacing:4px}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="orb-wrap"><div class="orb ob1"></div><div class="orb ob2"></div><div class="orb ob3"></div></div>
+
+<nav class="nav" id="nav">
+<div class="nav-inner">
+  <a href="#" class="nav-logo">М И М И Р</a>
+  <ul class="nav-links">
+    <li><a href="#packages">Пакеты</a></li>
+    <li><a href="#ambassadors">Послы</a></li>
+    <li><a href="#masterclasses">Мастер-классы</a></li>
+    <li><a href="#pricing">Цены</a></li>
+  </ul>
+  <a href="index.html" class="back-btn">← Главная</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<canvas id="particles-canvas"></canvas>
+<div class="source-symbol">
+  <svg width="800" height="800" viewBox="0 0 400 400"><circle cx="200" cy="200" r="180" fill="none" stroke="#C9943E" stroke-width=".5"/><circle cx="200" cy="200" r="140" fill="none" stroke="#C9943E" stroke-width=".3"/><circle cx="200" cy="200" r="100" fill="none" stroke="#C9943E" stroke-width=".3"/><circle cx="200" cy="200" r="60" fill="none" stroke="#C9943E" stroke-width=".5"/><line x1="200" y1="20" x2="200" y2="380" stroke="#C9943E" stroke-width=".3"/><line x1="20" y1="200" x2="380" y2="200" stroke="#C9943E" stroke-width=".3"/><line x1="73" y1="73" x2="327" y2="327" stroke="#C9943E" stroke-width=".2"/><line x1="327" y1="73" x2="73" y2="327" stroke="#C9943E" stroke-width=".2"/></svg>
+</div>
+<div class="wrap">
+<div class="hero-content">
+  <span class="hero-rune anim">✦ Пространство вдохновения · Уфа ✦</span>
+  <h1 class="hero-title anim d1">МИМИР</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle anim d2">Праздники, которые становятся частью твоей истории</p>
+  <p class="hero-desc anim d3">Место, где дети, подростки и семьи чувствуют радость, эстетику и смысл в каждом событии. Здесь рождается атмосфера.</p>
+  <div class="hero-btns anim d4">
+    <a href="#packages" class="btn-cta">✦ Посмотреть пакеты</a>
+    <a href="#contact" class="btn-outline">Связаться с нами</a>
+  </div>
+  <div class="hero-badges anim d4">
+    <span class="badge">📍 Гоголя 60/1</span>
+    <span class="badge">🌟 5 Послов вдохновения</span>
+    <span class="badge">🎨 Мастер-классы</span>
+    <span class="badge">✦ Праздники со смыслом</span>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C9943E" stop-opacity=".4"/><stop offset="50%" stop-color="#E8B44A" stop-opacity=".4"/><stop offset="100%" stop-color="#C9943E" stop-opacity=".4"/></linearGradient></defs><path d="M0,35 C200,70 400,0 600,35 C800,70 1000,5 1200,35 L1200,70 L0,70 Z" fill="#111e2c"/></svg></div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="about">
+<div class="rune" style="font-size:280px;top:-60px;right:-40px;transform:rotate(10deg)">М</div>
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">Философия</div>
+    <h2 class="sh">Источник света <span>в каждом событии</span></h2>
+    <p class="ssub" style="margin:0 auto">Мимир — в скандинавской мифологии — хранитель источника знания. Из его источника боги черпали мудрость. Так и каждый наш праздник — это источник вдохновения, красоты и радости.</p>
+  </div>
+  <div class="phil-grid">
+    <div class="phil-card anim d1"><span class="phil-ico">🌟</span><h3 class="phil-title">Праздники со смыслом</h3><p class="phil-text">Каждое событие наполнено идеей, красотой и эмоцией. Не шаблонный сценарий — а живое, осознанное действие.</p></div>
+    <div class="phil-card anim d2"><span class="phil-ico">✨</span><h3 class="phil-title">Эстетика и атмосфера</h3><p class="phil-text">Внимание к каждой детали — декор, аромат, музыка, свет. Пространство на Гоголя 60/1 создано как место красоты.</p></div>
+    <div class="phil-card anim d3"><span class="phil-ico">💛</span><h3 class="phil-title">Тепло и уверенность</h3><p class="phil-text">Дети уходят не просто счастливыми — они чувствуют себя вдохновлёнными, уверенными и особенными.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70"><path d="M0,5 C300,70 600,0 900,50 C1050,75 1150,15 1200,10 L1200,70 L0,70 Z" fill="#0d1a28"/></svg></div>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+<div class="rune" style="font-size:320px;bottom:-80px;left:-60px;transform:rotate(-8deg)">И</div>
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">Пакеты услуг</div>
+    <h2 class="sh">Три уровня <span>вдохновения</span></h2>
+    <p class="ssub" style="margin:0 auto">Выберите формат, который подходит именно вам — от камерного праздника до события-произведения искусства.</p>
+  </div>
+  <div class="pkg-grid">
+    <div class="pkg-card pkg-1 anim d1">
+      <div class="pkg-badge">✦ Начальный</div>
+      <span class="pkg-ico">🌿</span>
+      <div class="pkg-name">Луч Света</div>
+      <div class="pkg-tagline">Нежный, камерный праздник</div>
+      <div class="pkg-info"><span>⏱ 2,5 часа</span><span>👥 до 10 гостей</span><span>🌱 4–8 лет</span></div>
+      <ul class="pkg-list">
+        <li>Аренда зала МИМИР + ароматерапия</li>
+        <li>Базовое оформление (декор, цветы, свечи)</li>
+        <li>Фирменная музыкальная подборка</li>
+        <li>1 Посол вдохновения — ведущий-аниматор</li>
+        <li>Мастер-класс от Фабрики предпринимательства / Имидж-школы</li>
+        <li>Базовое чаепитие включено</li>
+        <li>Фото до 15 кадров + видеоролик в подарок</li>
+        <li>Фирменные сертификаты детям</li>
+      </ul>
+      <div class="pkg-price">от 12 000 ₽</div>
+    </div>
+    <div class="pkg-card pkg-2 anim d2">
+      <div class="pkg-badge">⭐ Популярный</div>
+      <span class="pkg-ico">✨</span>
+      <div class="pkg-name">Источник Вдохновения</div>
+      <div class="pkg-tagline">Праздник эмоций и творчества</div>
+      <div class="pkg-info"><span>⏱ 3 часа</span><span>👥 до 15 гостей</span><span>🌟 7–14 лет</span></div>
+      <ul class="pkg-list">
+        <li>Аренда зала + ароматерапия</li>
+        <li>Тематическое оформление по концепции</li>
+        <li>2 Посла вдохновения (напр. Фея Идеи и Арт-Мастер)</li>
+        <li>Индивидуальная фотозона</li>
+        <li>Профессиональный фотограф (70 фото) + видеоролик</li>
+        <li>Аксессуары для фото</li>
+        <li>Мастер-класс + базовое чаепитие</li>
+        <li>Именной сертификат именинника</li>
+      </ul>
+      <div class="pkg-price">от 25 000 ₽</div>
+    </div>
+    <div class="pkg-card pkg-3 anim d3">
+      <div class="pkg-badge">💎 Премиум</div>
+      <span class="pkg-ico">👑</span>
+      <div class="pkg-name">Мир Света</div>
+      <div class="pkg-tagline">Праздник как произведение искусства</div>
+      <div class="pkg-info"><span>⏱ 3–3,5 часа</span><span>🌸 Семьи и подростки</span></div>
+      <ul class="pkg-list">
+        <li>Аренда зала + ароматерапия</li>
+        <li>Индивидуальный сценарий праздника</li>
+        <li>3 Посла вдохновения</li>
+        <li>Премиум-декор: цветы, текстиль, свечи, фотозона</li>
+        <li>Фотосессия + видеосъёмка (ролик 1 мин.)</li>
+        <li>2 мастер-класса + бумажное шоу</li>
+        <li>Праздничный фуршет</li>
+        <li>Подарочная коробка «Свет вдохновения»</li>
+        <li>Фирменные сертификаты участникам</li>
+      </ul>
+      <div class="pkg-price">от 30 000 ₽</div>
+      <div class="pkg-price-sub">до 40 000 ₽ (полный комплект)</div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70"><path d="M0,50 C200,10 500,65 750,25 C950,-5 1100,55 1200,20 L1200,70 L0,70 Z" fill="#0d1a28"/></svg></div>
+
+<!-- AMBASSADORS -->
+<section class="ambassadors" id="ambassadors">
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">Послы вдохновения</div>
+    <h2 class="sh">Пять <span>хранителей света</span></h2>
+    <p class="ssub" style="margin:0 auto">Каждый посол — уникальный архетип, который делает праздник живым театром вдохновения. Все носят золотой знак МИМИР.</p>
+  </div>
+  <div class="amb-grid">
+    <div class="amb-card anim d1">
+      <span class="amb-emoji">🧚‍♀️</span>
+      <div class="amb-name">Фея Идеи</div>
+      <div class="amb-role">Помогает находить вдохновение и мечты. Говорит мягко и загадочно, ведёт книгу мечтаний.</div>
+      <div class="amb-palette"><span class="amb-color">айвори · перламутр · нежно-голубой</span></div>
+    </div>
+    <div class="amb-card anim d2">
+      <span class="amb-emoji">👨‍🏫</span>
+      <div class="amb-name">Профессор Света</div>
+      <div class="amb-role">Показывает, как знания превращаются в волшебство. Умный, артистичный, с лампой идей.</div>
+      <div class="amb-palette"><span class="amb-color">белый · золотистый · мёд</span></div>
+    </div>
+    <div class="amb-card anim d3">
+      <span class="amb-emoji">🌞</span>
+      <div class="amb-name">Хранитель Радости</div>
+      <div class="amb-role">Помогает каждому почувствовать уверенность. Яркий, поддерживающий, с мешочком радостных слов.</div>
+      <div class="amb-palette"><span class="amb-color">солнечный · апельсин · медный</span></div>
+    </div>
+    <div class="amb-card anim d4">
+      <span class="amb-emoji">🎨</span>
+      <div class="amb-name">Арт-Мастер</div>
+      <div class="amb-role">Ведёт мастер-классы и раскрывает внутреннего художника. Спокойный, творческий, с берётом и палитрой.</div>
+      <div class="amb-palette"><span class="amb-color">пыльно-голубой · графит · охра</span></div>
+    </div>
+    <div class="amb-card anim d5">
+      <span class="amb-emoji">👑</span>
+      <div class="amb-name">Госпожа Эстетика</div>
+      <div class="amb-role">Учит красоте, осанке и манерам. Элегантная наставница с жемчугом и зеркальцем вдохновения.</div>
+      <div class="amb-palette"><span class="amb-color">айвори · розовое золото · шампань</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70"><path d="M0,20 C250,65 550,5 800,40 C1000,65 1150,10 1200,30 L1200,70 L0,70 Z" fill="#0f1e2e"/></svg></div>
+
+<!-- MASTERCLASSES -->
+<section class="masterclasses" id="masterclasses">
+<div class="rune" style="font-size:280px;top:-50px;right:-50px;transform:rotate(5deg)">Р</div>
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">Мастер-классы</div>
+    <h2 class="sh">Пять путей к <span>себе</span></h2>
+    <p class="ssub" style="margin:0 auto">Каждый мастер-класс — это не просто занятие. Это опыт, который остаётся.</p>
+  </div>
+  <div class="mc-grid">
+    <div class="mc-card anim d1">
+      <div class="mc-num">01</div>
+      <span class="mc-ico">🗺️</span>
+      <div class="mc-name">Карта мечтаний МИМИР</div>
+      <div class="mc-desc">Коллаж «мой внутренний свет» — осознанные символы целей и чувств. Завершается мини-медитацией «о себе счастливой».</div>
+      <div class="mc-meta"><span class="mc-tag">9–17 лет</span><span class="mc-tag">2 часа</span></div>
+    </div>
+    <div class="mc-card anim d2">
+      <div class="mc-num">02</div>
+      <span class="mc-ico">👑</span>
+      <div class="mc-name">Улыбка уверенности</div>
+      <div class="mc-desc">Школа этикета от Имидж-школы: 5 правил уверенного поведения, «королевское дефиле» и сертификат улыбки.</div>
+      <div class="mc-meta"><span class="mc-tag">6–13 лет</span><span class="mc-tag">1,5 часа</span></div>
+    </div>
+    <div class="mc-card anim d3">
+      <div class="mc-num">03</div>
+      <span class="mc-ico">💡</span>
+      <div class="mc-name">Мой бизнес мечты</div>
+      <div class="mc-desc">Командный мастер-класс от Фабрики предпринимательства. Придумать, создать логотип и презентовать свою бизнес-идею.</div>
+      <div class="mc-meta"><span class="mc-tag">9–16 лет</span><span class="mc-tag">1,5 часа</span></div>
+    </div>
+    <div class="mc-card anim d2">
+      <div class="mc-num">04</div>
+      <span class="mc-ico">🎨</span>
+      <div class="mc-name">Открой свой талант</div>
+      <div class="mc-desc">Выбрать вдохновляющее слово и воплотить его на мини-холсте красками и золотом. Финал — фотосессия с работами.</div>
+      <div class="mc-meta"><span class="mc-tag">8–17 лет</span><span class="mc-tag">2 часа</span></div>
+    </div>
+    <div class="mc-card anim d3">
+      <div class="mc-num">05</div>
+      <span class="mc-ico">📸</span>
+      <div class="mc-name">Имидж и фотоэстетика</div>
+      <div class="mc-desc">Основы позирования, выражение эмоций, как «передать свой свет» на фото. Ведёт Госпожа Эстетика.</div>
+      <div class="mc-meta"><span class="mc-tag">10–17 лет</span><span class="mc-tag">1,5 часа</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70"><path d="M0,40 C300,5 600,65 900,20 C1050,0 1150,50 1200,35 L1200,70 L0,70 Z" fill="#0d1520"/></svg></div>
+
+<!-- PRICING TABLE -->
+<section class="pricing-sec" id="pricing">
+<div class="wrap">
+  <div style="text-align:center;margin-bottom:8px" class="anim">
+    <div class="stag">Дополнительно</div>
+    <h2 class="sh">Цены на <span>доп. услуги</span></h2>
+  </div>
+  <div class="anim d1">
+  <table class="price-table">
+    <thead><tr><th>Услуга</th><th>Стоимость</th></tr></thead>
+    <tbody>
+      <tr><td>Дополнительный час аренды</td><td>+2 000 ₽</td></tr>
+      <tr><td>Видеоотчёт — 1 минута</td><td>5 000 ₽</td></tr>
+      <tr><td>Сладкий стол</td><td>3 000–5 000 ₽</td></tr>
+      <tr><td>Дополнительный мастер-класс</td><td>2 000 ₽</td></tr>
+      <tr><td>Декор «премиум»</td><td>от 4 000 ₽</td></tr>
+      <tr><td>Бумажное шоу</td><td>5 000 ₽</td></tr>
+      <tr><td>Генератор тумана</td><td>1 500 ₽</td></tr>
+      <tr><td>Аквагрим (до 10 чел.)</td><td>2 000 ₽</td></tr>
+      <tr><td>Генератор мыльных пузырей</td><td>1 000 ₽</td></tr>
+    </tbody>
+  </table>
+  <div class="bonus-block">
+    <div class="bonus-title">🎁 Подарок каждому гостю</div>
+    <div class="bonus-text">Раздаточные сертификаты для гостей — на <strong style="color:var(--goldL)">бесплатное занятие</strong> в одной из наших школ.<br>+ Скидка <strong style="color:var(--goldL)">1 500 ₽</strong> на проведение следующего дня рождения каждому гостю.</div>
+  </div>
+  </div>
+</div>
+</section>
+<!-- WAVE -->
+<div class="wave"><svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70"><path d="M0,15 C200,60 500,5 750,45 C950,70 1100,15 1200,40 L1200,70 L0,70 Z" fill="#111e2c"/></svg></div>
+
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+<div class="wrap">
+  <div class="cta-inner anim">
+    <span class="cta-rune">✦</span>
+    <h2 class="cta-title">Создадим ваш<br>источник радости</h2>
+    <p class="cta-sub">Оставьте заявку — и мы вместе придумаем праздник, который станет частью вашей истории.</p>
+    <a href="#contact" class="btn-cta" style="font-size:18px;padding:20px 52px">✦ Записаться на праздник</a>
+    <div class="cta-contact-card">
+      <a href="tel:+73472000000" class="cta-phone">+7 (347) 200-00-00</a>
+      <p style="font-family:var(--fh);font-style:italic;color:var(--goldL);font-size:16px">МИМИР — пространство событий</p>
+      <p class="cta-addr">📍 Уфа, Гоголя 60/1</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="ft-bg-rune">МИМИР</span>
+  <div class="wrap">
+    <span class="ft-symbol">✦</span>
+    <div class="ft-logo">М И М И Р</div>
+    <p class="ft-tagline">Пространство, где вдохновение живёт в каждом событии</p>
+    <p class="ft-contact">+7 (347) 200-00-00</p>
+    <p class="ft-addr">Уфа, Гоголя 60/1 · Байдавлетова Ляйсан</p>
+    <p class="ft-copy">© 2025 МИМИР — Пространство вдохновения и событий. Все права защищены.</p>
+  </div>
+</footer>
+
+<script>
+// PROGRESS BAR
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY,h=document.body.scrollHeight-window.innerHeight;
+  prog.style.width=(s/h*100)+'%';
+},{passive:true});
+
+// NAVBAR
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',window.scrollY>60),{passive:true});
+
+// CANVAS: rising golden particles
+(function(){
+  const canvas=document.getElementById('particles-canvas');
+  const ctx=canvas.getContext('2d');
+  const colors=['#C9943E','#E8B44A','#FFD700','#F5E6C8','#EDD9A3','#ffffff'];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  class Particle{
+    reset(fresh){
+      this.x=Math.random()*canvas.width;
+      this.y=fresh?canvas.height+10:Math.random()*canvas.height;
+      this.size=.8+Math.random()*2.8;
+      this.speedY=-(0.25+Math.random()*.9);
+      this.speedX=(Math.random()-.5)*.3;
+      this.opacity=.15+Math.random()*.65;
+      this.color=colors[Math.floor(Math.random()*colors.length)];
+      this.pulse=Math.random()*Math.PI*2;
+      this.pulseSpd=.015+Math.random()*.025;
+      this.drift=Math.random()*Math.PI*2;
+      this.driftSpd=.008+Math.random()*.012;
+    }
+    update(){
+      this.y+=this.speedY;
+      this.x+=this.speedX+Math.sin(this.drift)*.4;
+      this.drift+=this.driftSpd;
+      this.pulse+=this.pulseSpd;
+      if(this.y<-10)this.reset(true);
+    }
+    draw(){
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+      ctx.fillStyle=this.color;
+      ctx.globalAlpha=this.opacity*(0.5+0.5*Math.sin(this.pulse));
+      ctx.shadowBlur=this.size*4;
+      ctx.shadowColor=this.color;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  const particles=Array.from({length:120},()=>{const p=new Particle();p.reset(false);return p;});
+  function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{p.update();p.draw();});
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// INTERSECTION OBSERVER
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');});},{threshold:.1});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h==='#')return;
+    e.preventDefault();
+    const t=document.querySelector(h);
+    if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
+  });
+});
+
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.anim').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
